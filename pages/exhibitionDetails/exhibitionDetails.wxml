@@ -1,0 +1,107 @@
+<view id="exhibitionDetails">
+  <!-- 头部图片 begin -->
+  <view class="headerImgWrp">
+    <!-- <view class="loadingWrapper" wx:if="{{isImgLoading}}">
+       <image class="imgLoading" src="../../images/audio-loading.png"></image> 
+    </view> -->
+    <view class="bgWrp blur" style="background-image: url({{details.imageUrl}}); width:{{windowWidth+40}}px;"></view>
+    <view class="descWrp mui-flex">
+      <image src="{{ details.imageUrl }}" class="imgPosterWrp" mode="aspectFill" bindload="bindload"></image>
+      <view class="lWrp cell">
+        <view class="bk">央·美术馆联袂 teamLab 打造【teamLab★未来游乐园】</view>
+        <view class="dateWrp">2018.06.29-2018.09.20</view>
+      </view>
+    </view>
+  </view>
+  <!-- 头部图片 end -->
+
+  <view class="lineWrp"></view>
+  <!-- 展览信息 begin -->
+  <view class="showInfoWrp plr30">
+    <view class="titleWrp">展览信息</view>
+    <view class="contentWrp">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+  <!-- 展览信息 end -->
+  <view class="lineWrp"></view>
+  <!-- 参展艺术家 begin -->
+  <view class="artistWrp">
+    <view class="titleWrp plr30">参展艺术家</view>
+
+    <template is="artistListScroll" data="{{artistList}}"></template>
+
+    <!-- <scroll-view scroll-x="true" scroll-with-animation="true" style="margin-top:40rpx;">
+      <view class="listWrp">
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+        </view>
+        <view class="itemWrp btnMore">更多</view>
+      </view>
+    </scroll-view> -->
+  </view>
+  <!-- 参展艺术家 end -->
+  <view class="lineWrp"></view>
+  <!-- 作品列表 begin -->
+  <view class="productWrp">
+    <view class="titleWrp plr30">作品</view>
+
+    <template is="productListScroll" data="{{productList,isMore:true}}"></template>
+  </view>
+  <!-- 作品列表 end -->
+  <view class="lineWrp"></view>
+
+  <!-- 评论 begin -->
+  <view class="commentWrp">
+    <view class="plr30 titleWrp mui-flex alc">
+      <view>评论</view>
+      <view class="clearfix cell">
+        <view class="fr btnComment">发表评论</view>
+      </view>
+    </view>
+
+    <view>
+      <template is="commentItem2" wx:for="{{commentList}}" wx:key="" data="{{...item,index}}"></template>
+      <!-- <template is="commentItem3"  wx:for="{{commentList}}" wx:key="" data="{{...item,index}}"></template>  -->
+    </view>
+
+  </view>
+  <!-- 评论 end   -->
+
+  <view class="ey-btn btnMoreComment">更多评论</view>
+
+
+
+  <view class="createTicketWrp">
+    <view class="mui-flex h100">
+      <view class="descWrp cell">
+        <view class="absmiddle">
+          <view class="t1">8.8折</view>
+          <view class="t2 txt-ovh">分享后即可获得EY独家打折券</view>
+        </view>
+      </view>
+      <view class="btnCreate">生成参展券</view>
+    </view>
+  </view>
+
+</view>
+
+<import src="../../lib/wxParse/wxParse/wxParse.wxml" />
+<import src="../../template/commentItem/commentItem.wxml" />
+<import src="../../template/artistListScroll/artistListScroll.wxml" />
+<import src="../../template/productListScroll/productListScroll.wxml" />

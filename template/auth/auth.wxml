@@ -1,0 +1,12 @@
+<template name="auth">
+  <view class="eyAuthWrp" wx:if="{{showAuthAlert}}">
+    <view class="eyAuthInrWrp">
+      <image src="https://img.kanhua.yiwaiart.com/eyadmin/auth/logo.png" class="imgLogo"></image>
+
+      <view class="t1">欢迎加入国内最大的艺术社群</view>
+      <view class="t1">一键登录，开启互动</view>
+
+      <button bindgetuserinfo="tapAuth" open-type="getUserInfo" class="btnLogin"></button>
+    </view>
+  </view>
+</template>

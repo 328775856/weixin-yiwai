@@ -1,0 +1,40 @@
+<template name="productListScroll">
+  <scroll-view class="productListScroll" scroll-x="true" scroll-with-animation="true">
+    <view class="listWrp">
+      <view class="itemWrp">
+        <view class="imgOutWrp">
+          <image mode="aspectFill" src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" bindtap="navigateToDetail" data-link-url="{{item.linkUrl}}"></image>
+        </view>
+
+        <view class="n1 txt-ovh">
+          <text>作品名称作品名称作品名称作品名称作品名称</text>
+        </view>
+      </view>
+
+      <view class="itemWrp">
+        <view class="imgOutWrp">
+          <image mode="aspectFill" src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" bindtap="navigateToDetail" data-link-url="{{item.linkUrl}}"></image>
+        </view>
+
+        <view class="n1 txt-ovh">
+          <text>作品名称作品名称作品名称作品名称作品名称</text>
+        </view>
+      </view>
+
+      <view class="itemWrp">
+        <view class="imgOutWrp">
+          <image mode="aspectFill" src="{{''}}" bindtap="navigateToDetail" data-link-url="{{item.linkUrl}}"></image>
+        </view>
+        <view class="n1 txt-ovh">
+          <text>作品名称作品名称作品名称作品名称作品名称</text>
+        </view>
+      </view>
+
+      <view class="itemWrp" wx:if="{{isMore}}">
+        <view class="imgOutWrp btnMore">查看全部</view>
+      </view>
+
+
+    </view>
+  </scroll-view>
+</template>

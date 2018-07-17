@@ -1,0 +1,109 @@
+<view id="detailWrp">
+
+  <!-- 头部图片 begin-->
+  <view class="headerImgWrp" bindtap="previewImage" data-url="{{ productDetails.imageUrl }}">
+    <image wx:if="{{isImgLoading}}" class="imgLoading" src="https://img.kanhua.yiwaiart.com/ironman/loading.gif?imageView2/2/w/130/h/130/q/50"></image>
+    <view wx:if="{{!isImgLoading}}" class="bgWrp blur" style="background-image: url({{productDetails.imageUrl}}); width:{{windowWidth+20}}px;height:{{maxHeight+20}}px;"></view>
+    <scroll-view bindscroll="bindscroll" scroll-x style="width: 100%;height:{{maxHeight}}px;">
+      <image src="{{ productDetails.imageUrl }}" class="containPicWrp" mode="aspectFill" bindload="bindload" style="width:{{imgWidth}}px;height:{{imgHeight}}px;margin-top:{{mt}}px;"></image>
+    </scroll-view>
+  </view>
+  <!-- 头部图片 end-->
+
+  <!-- 头部详情 begin -->
+  <view class="propWrp plr30">
+    <view class="nameWrp">{{productDetails.name}}</view>
+
+    <view class="mui-flex" wx:if="{{productDetails.productTypeDto.parent.name&&productDetails.productTypeDto.name}}">
+      <view class="lblWrp">类别：</view>
+      <view class="cell">{{productDetails.productTypeDto.parent.name}} - {{productDetails.productTypeDto.name}}</view>
+    </view>
+
+    <view class="mui-flex" wx:if="{{productDetails.proSize}}">
+      <view class="lblWrp">尺寸：</view>
+      <view class="cell">{{productDetails.proSize}}</view>
+    </view>
+    <view class="mui-flex" wx:if="{{productDetails.proYears}}">
+      <view class="lblWrp">创作年份：</view>
+      <view class="cell">{{productDetails.proYears}}</view>
+    </view>
+    <view class="mui-flex" wx:if="{{productDetails.collectPlace}}">
+      <view class="lblWrp">现藏于：</view>
+      <view class="cell">{{productDetails.collectPlace}}</view>
+    </view>
+
+  </view>
+  <!-- 头部详情 end -->
+  <view class="lineWrp"></view>
+  <!-- 艺术家简介 begin -->
+  <view class="descWrp plr30">
+    <view class="artistNameWrp">
+      <text>{{productDetails.artistName}}</text>
+      <text class="t1">作者</text>
+    </view>
+
+    <view id="textWrp" class="textWrp" style="height:{{limitHeight==0?'auto':limitHeight+'px;'}}">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <view wx:if="{{isShowOpen}}" class="btnOpenAll" bindtap="tapOpenAll">{{isOpen?'收起':'展开'}}</view>
+
+
+  </view>
+  <!-- 艺术家简介 end -->
+  <view class="lineWrp"></view>
+  <!-- 音频/视频 begin -->
+  <!-- 要判断只有一个或者多个的情况布局 -->
+  <!-- <swiper class="mediaWrp" previous-margin="{{bannerList.length <=2 ? 0 : '30rpx'}}" next-margin="{{bannerList.length <=2 ? 0 : '30rpx'}}"  indicator-dots="{{false}}"> -->
+  <swiper class="mediaWrp" previous-margin="{{'0rpx'}}" next-margin="{{'30rpx'}}" indicator-dots="{{false}}" circular="{{false}}">
+    <block wx:for="{{mediaList}}" wx:key="">
+      <swiper-item>
+        <view class="itemWrp">
+          <view class="itemInrWrp" style="background-image: url({{item.imageUrl}});" bindtap="tapPlay" data-type="{{item.type}}">
+            <image src="../../images/Picture/EY_btn_viedio_play@2x.png"></image>
+            <view class="wordsWrp txt-ovh">{{item.type==1?'视频':'音频'}}：我是{{item.type==1?'视频':'音频'}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 视频播放组件 begin-->
+  <video id="player" poster="{{productDetails.videoImage}}" src="{{productDetails.videoUrl}}" bindfullscreenchange="bindfullscreenchange" style="display:{{isShowPlayer?'block':'none'}};width:100%;"></video>
+  <!-- 视频播放组件 end-->
+
+  <!-- 音频/视频 end -->
+  <view class="lineWrp"></view>
+  <!-- 评论 begin -->
+  <view class="simpleCommentWrp plr30">
+    <view class="mui-flex headWrp">
+      <view class="cell t1">评论（190）</view>
+      <view class="t2">发表评论</view>
+    </view>
+
+    <view class="quesWrp" wx:if="{{productDetails.proQuestion&&productDetails.proQuestion!=''}}">{{productDetails.proQuestion}}</view>
+
+  </view>
+  <view>
+    <template is="commentItem" wx:for="{{commentListByPage}}" wx:key="" data="{{...item}}"></template>
+  </view>
+  <!-- 评论 end -->
+
+  <view class="ey-btn btnMore" bindtap="tapMoreComment" wx:if="{{commentList.length>0}}">更多评论</view>
+
+  <view class="lineWrp"></view>
+
+  <!-- 感兴趣 begin -->
+  <view class="interestWrp">
+    <view class="t1 plr30">你可能感兴趣</view>
+
+    <template is="productListScroll" data="{{productList}}"></template>
+
+  </view>
+
+  <!-- 感兴趣 end -->
+
+</view>
+
+<import src="../../lib/wxParse/wxParse/wxParse.wxml" />
+<import src="../../template/commentItem/commentItem.wxml" />
+<import src="../../template/productListScroll/productListScroll.wxml" />

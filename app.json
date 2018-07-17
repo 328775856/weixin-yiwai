@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/Index/Index",
+    "pages/Picture/Detail",
+    "pages/exhibitionDetails/exhibitionDetails",
+    "pages/musicDetails/musicDetails"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "意外艺术",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 12000
+  }
+}

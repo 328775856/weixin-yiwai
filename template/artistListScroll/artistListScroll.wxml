@@ -1,0 +1,25 @@
+<template name="artistListScroll">
+  <scroll-view class="artistListScroll" scroll-x="true" scroll-with-animation="true">
+    <view class="listWrp">
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp">
+        <image src="{{'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'}}" mode="aspectFill"></image>
+      </view>
+      <view class="itemWrp btnMore" bindtap="tapMoreArtist">更多</view>
+    </view>
+  </scroll-view>
+</template>

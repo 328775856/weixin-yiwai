@@ -1,0 +1,93 @@
+#indexWrp {
+  padding-bottom: 140rpx;
+}
+
+.plr30 {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.dayWrp {
+  margin-top: 80rpx;
+}
+
+.dayWrp:first-child {
+  margin-top: 0;
+}
+
+.dayWrp .cardWrp:first-child {
+  margin-top: 30rpx;
+}
+
+.dayWrp .imgWeek {
+  width: 149rpx;
+  height: 78rpx;
+  vertical-align: middle;
+}
+
+.dayWrp .cardWrp {
+  position: relative;
+  margin-top: 40rpx;
+  width: 100%;
+  height: 440rpx;
+  border-radius: 20rpx 20rpx 20rpx 6rpx;
+  box-shadow: 10rpx 20rpx 30rpx rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.dayWrp .cardWrp .typeWrp {
+  position: absolute;
+  top: 40rpx;
+  left: 0;
+  width: 100rpx;
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #27282d;
+  border-radius: 0 10rpx 10rpx 0;
+  color: #fff;
+  font-size: 26rpx;
+}
+
+.dayWrp .cardWrp image {
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* 品画类型 begin*/
+
+.dayWrp .cardWrp.type1 image {
+  height: 340rpx;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.dayWrp .cardWrp.type1 .titleWrp {
+  line-height: 100rpx;
+  height: 100rpx;
+  padding: 0 20rpx;
+  color: #27282d;
+  font-size: 38rpx;
+}
+
+/* 品画类型 end*/
+
+/* 看展 begin*/
+
+.dayWrp .cardWrp.type2 .titleWrp, .dayWrp .cardWrp.type3 .titleWrp {
+  position: absolute;
+  padding: 0 30rpx;
+  color: #fff;
+  font-size: 38rpx;
+  bottom: 30rpx;
+  left: 0;
+  line-height: 48rpx;
+  text-shadow: 3rpx 3rpx 3rpx rgba(0, 0, 0, 0.5);
+}
+
+/* 看展 end*/

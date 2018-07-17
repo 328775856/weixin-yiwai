@@ -1,0 +1,38 @@
+/* .artistListScroll {
+  margin-left: 30rpx;
+} */
+
+.artistListScroll .listWrp {
+  /* width: 100%; */
+  white-space: nowrap;
+  margin-left: 30rpx;
+  /* padding-left: 30rpx; *//* box-sizing: border-box;  */
+}
+
+.artistListScroll .listWrp .itemWrp {
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  margin-right: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 100%;
+}
+
+.artistListScroll .listWrp .itemWrp image {
+  border-radius: 100%;
+  width: 120rpx;
+  height: 120rpx;
+  vertical-align: middle;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.artistListScroll .listWrp .btnMore {
+  font-size: 30rpx;
+  color: #333;
+  background: linear-gradient(to right, #fbca00, #ffeb00);
+  line-height: 120rpx;
+}

@@ -1,0 +1,110 @@
+<!-- 评论列表模板1 begin-->
+<template name="commentItem">
+  <view class="commentItemWrp">
+    <view class="sealWrp hot" wx:if="{{isHot==1}}">
+      <view class="wordsWrp">HOT</view>
+    </view>
+    <view class="mui-flex alc">
+      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
+        <!-- 需要区分黄v和蓝v -->
+        <image wx:if="{{isVip!=0}}" class="iconV" src="{{isVip==1?'../../images/EY_icon_VIP@2x.png':'../../images/EY_icon_VIP@2x.png'}}"></image>
+      </view>
+      <view class="cell">
+        <view class="nameWrp txt-ovh">{{customerName}}</view>
+        <view class="dateWrp">{{gmtCreate}}</view>
+      </view>
+
+
+    </view>
+    <view class="contentWrp bk">{{content}}</view>
+    <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
+
+    <view class="opeWrp">
+      <view class="clearfix">
+        <view class="fr">
+          <view class="commentImgWrp fl mui-flex alc" bindtap="navigateToReply" data-commentid="{{id}}">
+            <image src="../../images/EY_icon_comment@2x.png"></image>
+            <view wx:if="{{replyNum>0}}">{{replyNum}}</view>
+          </view>
+          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
+            <image src="{{isLike&&isLike==1?'../../images/EY_icon_like_selected@2x.png':'../../images/EY_icon_like_normal@2x.png'}}"></image>
+            <view wx:if="{{commentLikeNum>0}}">{{commentLikeNum}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</template>
+<!-- 评论列表模板1 end-->
+
+
+<!-- 评论列表模板2 begin-->
+<template name="commentItem2">
+  <view class="commentItemWrp commentItemWrp2">
+    <!-- <view class="sealWrp hot">
+      <view class="wordsWrp">HOT</view>
+    </view> -->
+    <view class="mui-flex alc">
+      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
+        <image class="iconV" src="{{'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'}}"></image>
+      </view>
+      <view class="cell">
+        <view class="nameWrp txt-ovh">{{'博物馆'}}</view>
+        <view class="dateWrp">{{'2018-06-30'}}</view>
+      </view>
+
+
+    </view>
+    <view class="contentWrp bk">{{'他们是懂美学的牛顿。懂人类学的梵谷。懂孙子兵法的甘地。血液里充满答案，越来越少的问题能让他们恐惧。彷佛站在巨人的肩牓上，习惯俯视一切。'}}</view>
+    <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
+    <view class="opeWrp">
+      <view class="clearfix">
+        <view class="fr">
+          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
+            <image src="{{}}"></image>
+            <view>{{666}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 评论列表模板2 end-->
+
+<!-- 评论列表模板3 begin-->
+<template name="commentItem3">
+  <view class="commentItemWrp commentItemWrp3">
+    <view class="mui-flex alc">
+      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
+        <image class="iconV" src="{{'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'}}"></image>
+      </view>
+      <view class="cell">
+        <view class="nameWrp txt-ovh">{{'博物馆'}}</view>
+        <view class="dateWrp">{{'2018-06-30'}}</view>
+      </view>
+
+      <view class="isGoodIcon" wx:if="{{isGood}}">优秀评论</view>
+    </view>
+    <view class="contentWrp bk">{{'他们是懂美学的牛顿。懂人类学的梵谷。懂孙子兵法的甘地。血液里充满答案，越来越少的问题能让他们恐惧。彷佛站在巨人的肩牓上，习惯俯视一切。'}}</view>
+    <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
+    <view class="opeWrp">
+      <view class="clearfix">
+        <view class="fr">
+          <view class="commentImgWrp fl mui-flex alc" bindtap="navigateToReply" data-commentid="{{id}}">
+            <image src="{{}}"></image>
+            <view>{{998}}</view>
+          </view>
+          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
+            <image src="{{}}"></image>
+            <view>{{666}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 评论列表模板3 end-->

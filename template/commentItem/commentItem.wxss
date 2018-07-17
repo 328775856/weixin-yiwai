@@ -1,0 +1,147 @@
+.commentItemWrp {
+  position: relative;
+  margin: 20rpx 30rpx 0 30rpx;
+  padding: 30rpx 30rpx;
+  /* padding-top: 55rpx; *//* border: 1px solid black; */
+  border-radius: 5rpx;
+  box-shadow: 8rpx 5rpx 25rpx rgba(27, 28, 31, 0.15);
+  overflow: hidden;
+}
+
+.commentItemWrp:first-child {
+  margin-top: 0;
+}
+
+.commentItemWrp .sealWrp {
+  position: absolute;
+  top: -90rpx;
+  right: -90rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.commentItemWrp .sealWrp.best {
+  background-color: #fbca00;
+}
+
+.commentItemWrp .sealWrp.hot {
+  background-color: #ffeb00;
+}
+
+.commentItemWrp .sealWrp .wordsWrp {
+  font-size: 28rpx;
+  position: absolute;
+  left: 20rpx;
+  bottom: 30rpx;
+  transform: rotate(45deg);
+}
+
+.commentItemWrp .headWrp {
+  margin-right: 25rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+  position: relative;
+}
+
+.commentItemWrp .headWrp .headImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.commentItemWrp .headWrp .iconV {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.commentItemWrp .nameWrp {
+  line-height: 1;
+  color: #27282d;
+  font-size: 30rpx;
+}
+
+.commentItemWrp  .dateWrp {
+  line-height: 1;
+  color: #ccc;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+.commentItemWrp .contentWrp {
+  margin-top: 30rpx;
+  line-height: 52rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.commentItemWrp .likeWrp {
+  line-height: 1;
+  color: #999;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  /* line-height: 48rpx; */
+}
+
+.commentItemWrp  .opeWrp {
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 35rpx;
+}
+
+.commentItemWrp  .opeWrp .commentImgWrp {
+  margin-right: 60rpx;
+}
+
+.commentItemWrp  .opeWrp .commentImgWrp image,
+.commentItemWrp  .opeWrp .likeImgWrp image {
+  /* vertical-align: middle;    */
+  margin-right: 5rpx;
+  /* border: 1px solid black; */
+}
+
+.commentItemWrp  .opeWrp .commentImgWrp image {
+  width: 24rpx;
+  height: 22rpx;
+  position: relative;
+  top: 9rpx;
+}
+
+.commentItemWrp  .opeWrp .likeImgWrp image {
+  width: 24rpx;
+  height: 27rpx;
+}
+
+/* 评论模板2 */
+
+.commentItemWrp2 {
+  margin: 40rpx 30rpx 0 30rpx;
+}
+
+/* 评论模板3 */
+
+.commentItemWrp3 {
+  padding: 0;
+  box-shadow: none;
+  margin: 80rpx 30rpx 0 30rpx;
+}
+
+.commentItemWrp3 .isGoodIcon {
+  background: linear-gradient(to right, #fbca00,#ffeb00);
+  width: 150rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 10rpx 10rpx 10rpx 3rpx;
+}

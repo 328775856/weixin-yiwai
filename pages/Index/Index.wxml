@@ -1,0 +1,68 @@
+<!-- 目前只有品画，看展，商城 -->
+<!-- type1 品画 -->
+<!-- type2 看展 -->
+<!-- type3 商城 -->
+<view id="indexWrp">
+  <view class="dayWrp plr30" wx:for="{{renderArr}}" wx:key="">
+    <image class="imgWeek" src="{{item._week}}"></image>
+    <block wx:for="{{item.list}}" wx:key="">
+      <!-- 品画 begin-->
+      <view wx:if="{{item.itemType==1}}" class="cardWrp type{{item.itemType}}" bindtap="navigateToDetails" data-item="{{item}}">
+        <view class="typeWrp">品画</view>
+        <image src="{{item.imageUrl}}" mode="aspectFill" bindload="bindload"></image>
+        <view class="titleWrp txt-ovh">{{item.name}}</view>
+      </view>
+      <!-- 品画 end-->
+
+      <!-- 看展 begin-->
+      <view wx:if="{{item.itemType==2}}" class="cardWrp type{{item.itemType}}" bindtap="navigateToDetails" data-item="{{item}}">
+        <view class="typeWrp">看展</view>
+        <image src="{{item.imageUrl}}" mode="aspectFill" bindload="bindload"></image>
+        <view class="titleWrp bk">{{item.name}}</view>
+      </view>
+      <!-- 看展 end-->
+
+      <!-- 商城 begin-->
+      <view wx:if="{{item.itemType==3}}" class="cardWrp type{{item.itemType}}" bindtap="navigateToDetails" data-item="{{item}}">
+        <view class="typeWrp">商城</view>
+        <image src="{{item.imageUrl}}" mode="aspectFill" bindload="bindload"></image>
+        <view class="titleWrp bk">{{item.name}}</view>
+      </view>
+      <!-- 商城 end-->
+    </block>
+
+  </view>
+
+  <!-- <view class="dayWrp plr30">
+    <view class="weekWrp">today</view>
+
+    <view class="cardWrp type1">
+      <view class="typeWrp">品画</view>
+      <image src="https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg" mode="aspectFill"></image>
+      <view class="titleWrp txt-ovh">煎饼磨坊的舞会煎饼磨坊的舞会煎饼磨坊的舞会煎饼磨坊的舞会</view>
+    </view>
+
+    <view class="cardWrp type2">
+      <view class="typeWrp">看展</view>
+      <image src="https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg" mode="aspectFill"></image>
+      <view class="titleWrp bk">央·美术馆联袂 teamLab 打造【teamLab★未来游乐园】央·美术馆联袂 teamLab 打造【teamLab★未来游乐园】央·美术馆联袂 teamLab 打造【teamLab★未来游乐园】</view>
+    </view>
+
+    <view class="cardWrp type3">
+      <view class="typeWrp">商城</view>
+      <image src="https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg" mode="aspectFill"></image>
+    </view>
+
+
+  </view> -->
+
+
+</view>
+
+
+<!-- 授权:ui模板 begin-->
+<import src="../../template/auth/auth" />
+<template is="auth" data="{{showAuthAlert}}"></template>
+<!-- 授权:ui模板 end-->
+<import src="../../template/tabbar/tabbar" />
+<template is="tab-bar" data="{{ tabType:1,totalNum,isIpx }}"></template>

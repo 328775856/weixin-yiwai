@@ -1,0 +1,36 @@
+<template name="tab-bar">
+  <view class="tab-bar {{isIpx?'ipx':''}}">
+    <view class="tab-wrapper">
+      <view class="list">
+        <form bindsubmit="changeTabBar" report-submit="true" data-bar="1">
+          <button formType="submit">
+            <image src="{{ tabType === 1 ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAMAAACBKikvAAAAclBMVEUAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YiElAAAAJXRSTlMAEPAw+gXs21wm9vLDkIhhSD0X6d+9qaN9dDQi09DPqphtNiwI39DOLwAAAL5JREFUOMvt1MkSwiAMgOEUC913rV3cNe//ilanFGukcNQZvyPzXxIGgDqzqAELCQ7qmynjNT7F5XLnbHDkBUtdecAJK/RdsMYXrq/rOoFz6ecuD/HdlgOVuUjFDunaeaEdPkENMRueH0lAhldr1mqmNe+RIMOrNSua4S8CzbxertlkBxVacYHZhSlkj00ZqlOUcoCuvYIhnC78O0LmjApTKI9W//CnQqFekTzqVReqr8qXD6LK1ScjP60og8EdvD1/ip8sUcgAAAAASUVORK5CYII=' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAMAAACBKikvAAAAYFBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZnx1IImAAAAH3RSTlMAEPAw+fMF7MFc25ImiHJIPTUX6d/QqaN9YiLTqiwIVtrrMQAAALhJREFUOMvt1MsOgjAQheEptqXcERQBL/P+byma1lFH2i418VuSfzMnocDViRohQoGL4RLK9IB3pvN3wqCVl76u2+ND2q535Q6fyGyt26b4qvrcNQrfHTRwmUTOCD4zi+h4NjPDjtcnFrDj3cweI5uZsONpZi8jaGa/fKaZ/Y7QYxQJSVxYwXRbKlAVqtLLMfUZAqEA6zvCRFhtKHSfNv/wp8KU/iL3aaZOaXqg3A/RN/TISNdNsLgCDQdrFUhp4JwAAAAASUVORK5CYII=' }}"></image>
+            <view class="{{tabType===1?'active':''}}">推荐</view>
+          </button>
+        </form>
+      </view>
+
+      <!-- <view class="list">
+        <form bindsubmit="changeTabBar" report-submit="true" data-bar="3">
+          <button formType="submit">
+            <image src="{{ tabType === 2 ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAMAAACBKikvAAAAhFBMVEUAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBCVE0cAAAAK3RSTlMAoHAN4GUU+vHnlYV3aWAb2M/Dvrmvj4BWQSse9erSim9QSUc7CrJtXi8oqB9x3wAAAOtJREFUOMvt1ElvwjAQhuEvJDbZA4SELEBZu83//3/FcUeil8wcOPY9WaPHcixFhquhuZIKv400X8twIcAjww0JfXlXkdSbhx8iTPhksd45S3KBg4UCxncANSnq+GSpd8Co4NJiS6oKxDq4Aena46CUSHUugo34YrMwAyp/79UtJ9+65D3RJebZHY+GU5b3AMw0DkLcVuRqLL7r6bDH7E/h+fQ5wnXN0nxwE4zn8mKf0fW4T/0+Ey15ldC2f0ZDFkxXioPCtNPq0Hbdzn9A0pTgSulv5IwWLv7hS2CuhbuXw0J6HrmwnnPrypkfpRfGq8TfJGQAAAAASUVORK5CYII=' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAMAAACBKikvAAAAZlBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZlLhKZbAAAAIXRSTlMAoHD7YfPfg2cNwBTQlLCMd0gb6ua5VkErHtZuUDsKLyh0QgIFAAAA4UlEQVQ4y+2USQ6DMAxFP5CQQIAylaFz7n/JNqGW2g32osu+VWQ968uWFQQav8fQ483q9zmQmDJiRWLpGe6I9JxH2WdWHCmZZQ6ey3gxCaL1PPpGyRwTJXM0gPISMoejF2GhZWIJL0NjEJqoZV4Ol9Ngu3syQL/Nfbq2dH6KWvJOU+2GF0tq2hmAjeWkwPW0bdnhUcawV+2L4nJWKwKdqdslVLBeVOfwQVfpeutTeUav0R9nfLCYJI6kE2vr+BoO02S2McdGgVDcNRJWKqZ/8SdiKxXNz0Ur/JpRlHte1QfnCVeEmD1Jk1Y3AAAAAElFTkSuQmCC' }}"></image>
+            <view>商城</view>
+          </button>
+        </form>
+      </view> -->
+
+      <view class="list">
+        <form bindsubmit="changeTabBar" report-submit="true" data-bar="2">
+          <button formType="submit">
+            <view class="imgWrp">
+              <image src="{{ tabType === 2 ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAmCAMAAACWCLnmAAAAXVBMVEUAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfjkYuAAAAHnRSTlMAgiL67rFfCPj01reWWlVGF93PwqmPbGJNPS4sKxqirtSBAAAAy0lEQVQ4y63SSRKCQBBE0epJEAFRmYe6/zF1pdXVGfTGv34RuUmSWfPyzP5lLOFs4G8BovbKomubiolVkxaL08QtsSgenPQoIjIyaIzIE5GnFB3DOkHumNwFaTBpBLlgcvk7mTGZBdkx2UnkkfAkqxGp4zu5VDh1K5MSQ6qbFjfSFSEWoaA0o1d0to7vXVs9Y0pWlSaaWisGVetPtCXDyjY6FK4Br4TfPPwZ8ceH9HxaT7Rxpo2GHBmoypGKXI444mzpT9LfdOFchO4NNudkGZ04LDoAAAAASUVORK5CYII=' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAmCAMAAACWCLnmAAAAVFBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZlKXBdvAAAAG3RSTlMA+YJgIrFICvTu1reWWlUrF+/dz8Kpj2w9LhprF5AOAAAAx0lEQVQ4y63S2w6DIBBF0QFBBBHxfpn//8/2qQVmImnS/bySMXIgTcl1QpxWqYBPafykWRQ6TOoCFQ0WNaU4RUnEmQszI2k2GTmQ6cjIwpElFRHZYkJanrQJGXgykJ9Cav5DfvvckScjJFlOWEjzHPEZUYIKUcxKUiKhqC9FD2VG50IboMn8Ck35fN5elWck3a7MTl0Omdz1FUEgmwhkULSBPjP/2Ld9IvZ+kw0f28hUuNHsNbKDqxEHokYEYDW6E7qbqJ+Fji99rVn3GWYmogAAAABJRU5ErkJggg==' }}"></image>
+              <view class="numWrp" wx:if="{{totalNum>0}}">{{totalNum > 99 ? '99+' : totalNum}}</view>
+            </view>
+            <view class="{{tabType===2?'active':''}}">我的</view>
+          </button>
+        </form>
+      </view>
+
+    </view>
+  </view>
+</template>

@@ -1,0 +1,100 @@
+.tab-bar {
+  width: 100%;
+  height: 95rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  border-top: 1px solid #eee;
+}
+
+/* 兼容iphone x */
+
+.tab-bar.ipx {
+  padding-bottom: 68rpx;
+}
+
+
+.tab-bar button .active {
+   color: #27282D; 
+}
+
+.tab-bar .tab-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #efefef;
+}
+
+.tab-wrapper.ipx {
+  padding-bottom: 68rpx;
+}
+
+.tab-bar .list:nth-child(1)  image {
+  width: 40rpx;
+  height: 38rpx;
+}
+
+.tab-bar .list:nth-child(2)  image {
+  width: 34rpx;
+  height: 38rpx;
+}
+
+.tab-bar image {
+  /* width: 44rpx;
+  height: 47rpx; */
+  display: block;
+  margin: 0 auto 10rpx;
+}
+
+.tab-bar .comment, .tab-bar .list {
+  flex: 1;
+}
+
+.tab-bar .comment {
+  border-right: 1px solid #404040;
+}
+
+.tab-bar button {
+  font-size: 20rpx;
+   color: #7F8389; 
+  overflow: visible;
+  align-items: center;
+  /* margin-left: 30rpx; */
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  line-height: 1;
+  border-radius: 0;
+}
+
+.tab-bar button::after {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-bar .imgWrp {
+  width: 39rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.tab-bar .numWrp {
+  position: absolute;
+  top: -12rpx;
+  right: -30rpx;
+  background-color: #ff2d4b;
+  border-radius: 100%;
+  color: #fff;
+  height: 45rpx;
+  font-size: 18rpx;
+  line-height: 45rpx;
+  width: 45rpx;
+  text-align: center;
+  margin-left: 10rpx;
+}
