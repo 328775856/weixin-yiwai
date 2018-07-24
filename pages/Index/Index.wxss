@@ -1,5 +1,23 @@
+@import '../../template/empty/empty.wxss';
+
 #indexWrp {
   padding-bottom: 140rpx;
+}
+
+.bannerWrp {
+  width: 100%;
+  /* height: 440rpx; */
+  height: 600rpx;
+}
+
+.bannerWrp .imgWrp {
+  width: 100%;
+  height: 100%;
+}
+
+.bannerWrp .imgWrp image {
+  width: 100%;
+  height: 100%;
 }
 
 .plr30 {

@@ -74,8 +74,9 @@ function baseRequest(path, data, header, method) {
   })
     // response 拦截返回参数
     .then((d) => {
-      // debugger;
-      // console.log(d);
+      if (d.data.ret && d.data.retType == -1) {
+        return Promise.reject({ res: '非法请求协议', retType: -1 });
+      }
       // rap环境下
       if (mode == 1) {
         let { data } = d;
@@ -90,7 +91,7 @@ function baseRequest(path, data, header, method) {
         console.log('网络超时');
       }
       // 这里全局判断接口出错
-      return Promise.reject(res);
+      return Promise.reject({ res: '接口出错', retType: -2 });
     });
 }
 

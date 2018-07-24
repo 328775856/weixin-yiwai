@@ -1,0 +1,10 @@
+
+<template name="empty"> 
+  <view class='empty'>
+    <view class='empty-wrap'>
+        <image class='empty-image' src='../../images/EY_icon_nofound@2x.png'></image>
+
+        <view class='empty-title'>{{title}}</view>
+    </view>
+  </view>
+</template>

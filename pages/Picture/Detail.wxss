@@ -1,9 +1,32 @@
 @import "../../lib/wxParse/wxParse/wxParse.wxss";
 @import '../../template/commentItem/commentItem.wxss';
 @import '../../template/productListScroll/productListScroll.wxss';
+@import '../../template/commentInput/commentInput.wxss';
 
 #detailWrp {
-  padding-bottom: 100rpx;
+  padding-bottom: 130rpx;
+}
+
+/* 送桃 */
+.peachWrp {
+  position: absolute;
+  top: 12rpx;
+  text-align: center;
+  line-height: normal;
+  right: 30rpx;
+}
+
+.peachWrp image {
+  width: 120rpx;
+  height: 46rpx;
+  margin-bottom: 20rpx;
+  vertical-align: middle;
+}
+
+.peachWrp .numWrp {
+  font-size: 22rpx;
+  color: #c87561;
+  line-height: 1;
 }
 
 .headerImgWrp {
@@ -40,6 +63,7 @@
   color: #333;
   line-height: 56rpx;
   margin-bottom: 40rpx;
+  position: relative;
 }
 
 .propWrp .nameWrp {
@@ -47,6 +71,7 @@
   margin-bottom: 40rpx;
   font-size: 36rpx;
   font-weight: bold;
+  max-width: 550rpx;
 }
 
 .propWrp  .lblWrp {
@@ -106,7 +131,6 @@
   width: 100%;
   height: 100%;
   border-radius: 17rpx 17rpx 17rpx 5rpx;
-
   /* background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_2.png); */
   background-repeat: no-repeat;
   background-position: center;
@@ -168,6 +192,29 @@
 .btnMore {
   margin-top: 30rpx;
   margin-bottom: 40rpx;
+}
+
+.btnCreatePoster {
+  border-radius: 30rpx;
+  text-align: center;
+  line-height: 60rpx;
+  width: 170rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  right: 50rpx;
+  bottom: 30rpx;
+  border: 1rpx solid #ccc;
+  text-shadow: 3rpx 3rpx 3rpx rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btnCreatePoster image {
+  width: 26rpx;
+  height: 26rpx;
+  vertical-align: middle;
 }
 
 .interestWrp  .t1 {

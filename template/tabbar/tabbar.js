@@ -4,24 +4,25 @@ const getPagesInfo = () => {
   const self = pages[index];
 
   self.changeTabBar = (e) => {
-    const { target: { dataset: { bar: tabType } } } = e;
+    const { target: { dataset: { bar } } } = e;
+    const { tabType } = self.data;
     console.log(tabType, 'tabType')
     let url;
-    switch (+tabType) {
+    switch (+bar) {
       case 1:
         if (+tabType === 1) return;
         url = '../Index/Index';
         wx.redirectTo({ url });
         break;
+      // case 2:
+      //   wx.navigateToMiniProgram({
+      //     appId: 'wx2a3373ccf73a2790',
+      //     path: '',
+      //   })
+      //   break;
       case 2:
-        wx.navigateToMiniProgram({
-          appId: 'wx2a3373ccf73a2790',
-          path: '',
-        })
-        break;
-      case 3:
         if (+tabType === 2) return;
-        url = `../mine/mine`;
+        url = `../member/member`;
         wx.redirectTo({ url });
         break;
       default:

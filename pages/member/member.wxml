@@ -1,0 +1,28 @@
+<!--pages/member/member.wxml-->
+<!-- 授权:ui模板 begin-->
+<import src="../../template/auth/auth" />
+<template is="auth" data="{{showAuthAlert}}"></template>
+<!-- 授权:ui模板 end-->
+<view id='member'>
+  <view  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+          <image bindtap='linkEdit' mode="aspectFill" src="{{userInfo.avatarUrl}}" style="vertical-align: middle;"></image>
+      </view>
+      <view class="weui-cell__bd"><text class='textOverflow'>{{userInfo.nickName}} </text><image src='../../images/member/EY_icon_edit@2x.png' class="icon-edit" bindtap='linkEdit'></image></view>
+
+      <view bindtap='personalLink' class="weui-cell__ft weui-cell__ft_in-access">个人主页</view>
+  </view>
+</view>
+<view id='memberList'>
+    <navigator url="{{item.pageUrl}}" wx:if="{{item.type ==0 || item.type ==type}}" wx:for="{{optionList}}" wx:key="item.name" wx:for-index="idx" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+          <image src="{{item.icon}}" mode="aspectFit" style="vertical-align: middle;"></image>
+      </view>
+      <view class="weui-cell__bd">{{item.name}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+
+
+<import src="../../template/tabbar/tabbar" />
+<template is="tab-bar" data="{{ tabType:2,totalNum,isIpx }}"></template>

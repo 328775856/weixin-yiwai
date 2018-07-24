@@ -1,80 +1,589 @@
 //在使用的View中引入WxParse模块
 let wxParse = require('../../lib/wxParse/wxParse/wxParse.js');
+import timeFormat from '../../utils/timeFormat';
+
+/* 授权:引入 */
+import {
+  auth,
+  loginBefore
+} from '../../template/auth/auth';
+const {
+  login,
+  myNavigateTo
+} = getApp();
+
+import {
+  getExhibition,
+  getExhibitionArtistList,
+  findByExhibitionId,
+  getExhibitionCommentPage,
+  addExhibitionComment,
+  setExhibitionCommentLike,
+  getExhibitionTickets
+} from './exhibitionDetails.service';
+
 Page({
 
   data: {
-
-
-
-    windowWidth: 0,
+    customerId: 0,
+    exhibitionId: 0,
     details: null,
 
+    // 富文本
+    isShowOpen: false,
+    isOpen: false,
+    LIMITH: 100,
+    limitHeight: 0,
+    // 头部图片
+    windowWidth: 0,
+    isImgLoading: true,
 
     // 评论
     commentList: [],
+    pageNo: 0,
+    pageSize: 10,
+    isEmpty: false,
+    lock: false,
+    isLoaded: false,
+    isLoading: true,
+
+    // 展览作品
+    productList: [],
+    isMore: false,
+
+    isMoreArtist: false,
+
+    // 展券
+    ticketsId: 0,
+    discount: 0,
+    // 发表评论
+    commentLock: false,
+    content: '',
+    commentInputObj: {
+      value: '',
+      isShowTrue: false,
+      focus: false,
+      isMask: false,
+      placeholder: '说点什么...'
+    },
   },
 
   onLoad(options) {
+
+    /* 授权:登录方法 */
+    auth(login, this.init);
+    const {
+      id: exhibitionId
+    } = options;
+    this.setData({
+      exhibitionId
+    });
+
+
     let windowWidth = 0;
     wx.getSystemInfo({
       success(res) {
         windowWidth = res.windowWidth;
-        // windowHeight = res.windowHeight;
       }
     });
 
     this.setData({
-      windowWidth,
-      details: {
-        imageUrl: 'https://img.kanhua.yiwaiart.com/picture/5a02bfc4b3f7a5577.jpg'
-      }
+      windowWidth
     });
-    // temp
-    const article = '<p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">1890年，夏天，在法国圣雷米的精神病院。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">他们说，住进这里来，对所有人都好。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">病房有一扇小窗，每天晚上可以从窗户望出去，是法国乡村的夜晚，夜晚散发着柏树的香味。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">人群很远，在山脚下。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">窗外比病房亮得多，因为天空上有星星和月亮。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">它们明亮得好像可以发出声音。可是，医生并不让我晚上画画。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">只能到了白天的时候，拿起画笔颜料，凭记忆画下来。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">于是有了这幅《星空》。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;"><br/></p><p style="text-align: center"><img src="https://img.kanhua.yiwaiart.com/eyadmin/c5d8aeb4-3390-42b8-81d1-cb723be536eb.jpg"/></p><p><span style="font-family: &quot;Helvetica Neue&quot;; font-size: 13px;"><br/></span></p><p><span style="font-family: &quot;Helvetica Neue&quot;; font-size: 13px;">圣雷米夜晚的星空很漂亮，很安静，只有我能听到它们的声音，星星和月亮无时不刻在转动，只有在夜晚，它们才真正活着。</span></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;">———————</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">编者按：</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">距离梵高所作《星空》过去整整114年，直到2004年，美国宇航局和欧洲航天局公布了一张太空望远镜拍摄的太空照片，发现这幅太空摄影与《星夜》竟有很大相似之处。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">这种物质被人们称为“涡状星系”。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">在梵高那里，它就是每晚陪着病痛中的画家入眠的光芒。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;">&nbsp;</p><p style="text-align: center"><img src="https://img.kanhua.yiwaiart.com/eyadmin/3ffbde01-89c3-4d96-82f9-f80ea1af57b8.jpg"/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; text-align: center;">（右：太空望远镜拍摄的恒星）</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">恒星距离地球2万光年，肉眼无法观测到，但梵高做到了。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">艺术家惊人的创造力竟与科学相遇。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">梵高曾在写给弟弟提奥的信中说：</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">当我画一个太阳，我希望人们感觉它在以惊人的速度旋转，正在发出骇人的光热巨浪。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">他一生“痴迷”于追逐光芒，最终竟“看到”了这团星云。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">当一个人对待一件事情的时候，他看待这件事物的角度绝对是独一无二的。</p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px;"><br/></p><p style="margin-top: 0px; margin-bottom: 0px; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">当你痴迷某事时，会像梵高一样，勇于追逐自己的“星空”吗？</p>'
-    const that = this;
-    wxParse.wxParse('article', 'html', article, that, 15);
-
-
-    this.setData({
-      commentList: [{
-        customerImg: 'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'
-      },
-      {
-        customerImg: 'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/13'
-      },
-      {
-        customerImg: 'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'
-      }
-      ]
-    });
-
-  },
-
-  onReady() {
-
   },
 
   onShow() {
+    /* 授权: 判断是否显示弹框 */
+    loginBefore();
+    if (wx.getStorageSync('user').id)
+      this.init();
+  },
+  init() {
+    const {
+      id: customerId
+    } = wx.getStorageSync('user');
+    this.setData({
+      customerId
+    });
 
+    // some function
+    this.getExhibition();
+    this.getExhibitionArtistList();
+    this.findByExhibitionId();
+    this.getExhibitionCommentPage();
+    this.getExhibitionTickets();
+  },
+  /**
+   * 获取展览详情
+   */
+  getExhibition() {
+    const {
+      exhibitionId
+    } = this.data;
+    const postData = {
+      exhibitionId
+    };
+    getExhibition(postData).then(({
+      code,
+      data: details
+    }) => {
+      details.exhibitionStartTime = (details.exhibitionStartTime.split(' ')[0]).replace(/-/g, '.');
+      details.exhibitionEndTime = (details.exhibitionEndTime.split(' ')[0]).replace(/-/g, '.');
+      this.setData({
+        details
+      });
+
+
+      // 显示富文本
+      const {
+        isPreviewImage
+      } = this.data;
+      if (!isPreviewImage) {
+        const article = details.description;
+        const that = this;
+        wxParse.wxParse('article', 'html', article, that, 15);
+        const query = wx.createSelectorQuery().in(this);
+        query.select('#textWrp').boundingClientRect(({
+          height
+        }) => {
+          const {
+            LIMITH
+          } = that.data;
+          if (height > LIMITH) {
+            that.setData({
+              limitHeight: LIMITH,
+              isShowOpen: true
+            });
+          }
+        }).exec();
+      }
+      this.setData({
+        isPreviewImage: true
+      });
+
+
+
+    });
   },
 
-  onHide() {
+  /**
+   * 获取参展艺术家列表
+   */
+  getExhibitionArtistList() {
+    const {
+      exhibitionId
+    } = this.data;
+    const postData = {
+      pageNo: 1,
+      pageSize: 5,
+      searchInfo: JSON.stringify({
+        // 先用1
+        // exhibitionId: 1
+        exhibitionId
+      }),
+      sort: '',
+      sortField: ''
+    }
+    getExhibitionArtistList(postData).then(({
+      data: {
+        data: artistList,
+      totalItems
+      }
+    }) => {
+      if (artistList && artistList.length > 0) {
+        this.setData({
+          artistList,
+          isMoreArtist: totalItems >= 5 ? true : false
+        });
+      }
+    });
 
+    const operateData = (list) => {
+      list.map((item) => {
+        item.id = item.productDto.id;
+        item.name = item.productDto.name;
+        item.imageUrl = item.productDto.imageUrl;
+      });
+      return list;
+    };
+  },
+  /**
+   * 获取关联作品
+   */
+  findByExhibitionId() {
+    const {
+      exhibitionId
+    } = this.data;
+    const postData = {
+      pageNo: 1,
+      pageSize: 5,
+      searchInfo: JSON.stringify({
+        exhibitionId
+      }),
+      sort: '',
+      sortField: ''
+    }
+    findByExhibitionId(postData).then(({
+      data: {
+        exhibitsList: productList,
+      totalItems
+      }
+    }) => {
+      if (productList && productList.length > 0) {
+        this.setData({
+          productList: operateData(productList),
+          isMore: totalItems >= 5 ? true : false
+        });
+      }
+    });
+
+    const operateData = (list) => {
+      list.map((item) => {
+        item.id = item.productDto.id;
+        item.name = item.productDto.name;
+        item.imageUrl = item.productDto.imageUrl;
+      });
+      return list;
+    };
   },
 
-  onUnload() {
+  /**
+   * 评论列表
+   */
+  getExhibitionCommentPage() {
+    const {
+      lock,
+      isLoaded
+    } = this.data;
+    if (!lock && !isLoaded) {
+      this.setData({
+        lock: true,
+        isLoading: true
+      });
 
+      const {
+      exhibitionId,
+        customerId,
+        pageNo,
+        pageSize
+    } = this.data;
+      const no = pageNo + 1;
+      const postData = {
+        searchInfo: JSON.stringify({
+          exhibitionId
+        }),
+        pageNo: no,
+        pageSize,
+        sortField: '',
+        sort: '',
+        presentCustomerId: customerId
+      };
+      getExhibitionCommentPage(postData).then(({
+        data: {
+         commentList,
+        totalItems,
+        totalPages
+        }
+      }) => {
+        // setTimeout(() => {
+
+        if (no >= totalPages) {
+          this.setData({
+            isLoaded: true
+          });
+        }
+        if (commentList && commentList.length > 0) {
+          this.setData({
+            commentList: [...this.data.commentList, ...this.operateData(commentList)],
+            pageNo: no
+          });
+        } else {
+          // 如果是第一页就无数据
+          if (no == 1) {
+            // 显示空模板
+            this.setData({
+              isEmpty: true
+            });
+          }
+        }
+        // 解除锁定,隐藏加载loading
+        this.setData({
+          lock: false,
+          isLoading: false,
+        });
+
+        // }, 5000);
+
+      });
+
+
+    }
+  },
+  operateData(list) {
+    list.map(item => {
+      item.gmtCreate = timeFormat(item.gmtCreate);
+    });
+    return list;
   },
 
-  onPullDownRefresh() {
+  /**
+   * 获取打折数量
+   */
+  getExhibitionTickets() {
+    const { exhibitionId } = this.data;
+    getExhibitionTickets({ exhibitionId }).then(({ code, data: { id, discount } }) => {
+      if (code == '10000') {
+        this.setData({ ticketsId: id, discount });
+      }
+    });
+  },
+  tapLoadMore() {
+    this.getExhibitionCommentPage();
+  },
+  tapSetCommentLike({ currentTarget: { dataset: { commentId } } }) {
+    const { commentList, customerId } = this.data;
+    commentList.map(item => {
+      if (item.id == commentId) {
+        item.isLike = item.isLike ? 0 : 1;
+        item.commentLikeNum = item.isLike ? ++item.commentLikeNum : --item.commentLikeNum;
+        // item.clickBig = item.isLike ? true : false;
+      }
+    });
+    this.setData({ commentList });
 
+    const postData = { commentId, customerId };
+    setExhibitionCommentLike(postData);
+  },
+  /* input事件相关 begin */
+  tapAddComment() {
+    // 判断非空
+    const {
+      content
+    } = this.data;
+    if (content.trim() == '') {
+      wx.showToast({
+        title: '观点不能为空！',
+        icon: 'none'
+      });
+
+      return;
+    }
+    this.addComment();
+  },
+  // 点击带有收藏的评论框
+  tapci2() {
+    this.setData({
+      'commentInputObj.isShowTrue': true,
+      'commentInputObj.focus': true,
+    });
+  },
+  cibindinput(e) {
+    const {
+      detail: {
+        value
+      }
+    } = e;
+    this.setData({
+      content: value
+    });
+  },
+  cibindfocus(e) {
+    this.setData({
+      'commentInputObj.isMask': true,
+    });
+  },
+  taphideMask() {
+    this.setData({
+      'commentInputObj.isShowTrue': false,
+      'commentInputObj.isMask': false,
+    });
   },
 
-  onReachBottom() {
+  addComment() {
+    const { commentLock } = this.data;
+    if (commentLock) return;
+    const {
+      content,
+      exhibitionId,
+      customerId
+    } = this.data;
+    const postData = {
+      content,
+      customerId,
+      exhibitionId,
+    };
+    wx.showLoading({
+      title: '提交中...',
+    });
+    this.setData({
+      commentLock: true
+    });
 
+    addExhibitionComment(postData).then(({
+      code,
+      data: {
+        id: commentId,
+        gmtCreate
+      }
+    }) => {
+      if (code == '10000') {
+        this.addCommentSucc(commentId, gmtCreate, content);
+        this.setData({
+          commentLock: false
+        });
+      } else {
+        wx.showToast({
+          title: '评论失败！',
+          mask: true
+        });
+      }
+
+      // 清空文本域
+      this.setData({
+        'commentInputObj.value': '',
+        content: ''
+      });
+
+    });
   },
 
-  onShareAppMessage() {
+  addCommentSucc(commentId, gmtCreate, content) {
+    wx.showToast({
+      title: '评论成功！',
+      icon: 'success',
+      mask: true,
+    });
+    const {
+      id,
+      nickName,
+      avatarUrl,
+      isVip,
+      vipInfo,
+      isOfficial
+    } = wx.getStorageSync('user');
+    const obj = {
+      id: commentId,
+      // 格式化时间
+      gmtCreate: timeFormat(gmtCreate),
+      content,
+      _content: content,
+      customerId: id,
+      customerName: nickName,
+      customerImg: avatarUrl,
+      replyNum: 0,
+      replyList: [],
+      isLike: 0,
+      isVip,
+      vipInfo,
+      isOfficial: isOfficial || 0,
+      commentLikeNum: 0,
+      isHl: true
+    };
 
+    // 插入更多回答myCommentList
+    // const { myCommentList } = this.data;
+    // myCommentList.map(item => item.isHl = false);
+    // this.setData({ myCommentList });
+    // myCommentList.unshift(obj);
+    // this.setData({ siv: '' });
+    // this.setData({ myCommentList, siv: 'moreComment' });
+
+    const {
+      commentList,
+    } = this.data;
+    // commentList.map(item => item.isHl = false);
+    // this.setData({ commentList });
+    commentList.unshift(obj);
+    // this.setData({ siv: '' });
+    // this.setData({ commentList, siv: 'moreComment' });
+    this.setData({
+      commentList,
+    });
+    this.taphideMask();
+  },
+  /* input事件相关 end */
+
+  // 事件
+  tapShowCommentInput() {
+    this.setData({
+      'commentInputObj.isShowTrue': true,
+      'commentInputObj.focus': true,
+    });
+  },
+  tapOpenAll() {
+    const {
+      isOpen,
+      LIMITH
+    } = this.data;
+    if (isOpen) {
+      this.setData({
+        limitHeight: LIMITH,
+        isOpen: false
+      });
+    } else {
+      this.setData({
+        limitHeight: 0,
+        isOpen: true
+      });
+    }
+  },
+  /**
+   * 头部图片加载
+   */
+  bindload(e) {
+    // 图片加载完毕，关闭loading
+    this.setData({
+      isImgLoading: false
+    });
+  },
+  tapLookMoreArtist() {
+    const { exhibitionId } = this.data;
+    // 查看更多艺术家
+    myNavigateTo({
+      url: `../signArtist/signArtist?exhibitionId=${exhibitionId}`
+    });
+  },
+  tapLookMoreProduct() {
+    const { exhibitionId } = this.data;
+    // 查看更多作品
+    myNavigateTo({
+      url: `../exhibitionWorks/exhibitionWorks?exhibitionId=${exhibitionId}&type=4`
+    });
+  },
+  navigationPersonalArtistPage({ currentTarget: { dataset: { type, beVisitorId, isArtist } } }) {
+    myNavigateTo({ url: `../memberDetail/memberDetail?type=${type}&beVisitorId=${beVisitorId}&isArtist=${isArtist}` });
+  },
+  navigateToProductDetails({ currentTarget: { dataset: { id } } }) {
+    myNavigateTo({ url: `../Picture/Detail?id=${id}` });
+  },
+
+  previewImage(e) {
+    const {
+      url
+    } = e.currentTarget.dataset;
+    wx.previewImage({
+      current: url,
+      urls: [url]
+    });
+  },
+  navigateToExhibitionTicket() {
+    const {
+      exhibitionId,
+      // details: {
+      //   image,
+      //   exhibitionName,
+      //   exhibitionStartTime,
+      //   exhibitionEndTime,
+      //   place,
+      //   price,
+      // },
+      ticketsId,
+      discount
+    } = this.data;
+    // myNavigateTo({ url: `../exhibitionTicket/exhibitionTicket?image=${image}&exhibitionName=${exhibitionName}&exhibitionStartTime=${exhibitionStartTime}&exhibitionEndTime=${exhibitionEndTime}&place=${place}&price=${price}&discount=${discount}&ticketsId=${ticketsId}` });
+    myNavigateTo({ url: `../exhibitionTicket/exhibitionTicket?id=${exhibitionId}&ticketsId=${ticketsId}&discount=${discount}` });
   }
+  // onShareAppMessage() {
+
+  // }
 })

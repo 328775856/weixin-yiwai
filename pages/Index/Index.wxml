@@ -3,12 +3,24 @@
 <!-- type2 看展 -->
 <!-- type3 商城 -->
 <view id="indexWrp">
+
+  <swiper class="bannerWrp" indicator-dots="{{false}}" interval="5000" duration="500" indicator-active-color="#FFFFFF" circular="true">
+    <block wx:for="{{[1]}}" wx:key="">
+      <swiper-item>
+        <view class="imgWrp">
+          <image src="{{'https://img.kanhua.yiwaiart.com/miniApp/activity/banner_1_v1.png'}}" bindtap="navigationToByBanner" mode="aspectFill" />
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+
   <view class="dayWrp plr30" wx:for="{{renderArr}}" wx:key="">
     <image class="imgWeek" src="{{item._week}}"></image>
     <block wx:for="{{item.list}}" wx:key="">
       <!-- 品画 begin-->
       <view wx:if="{{item.itemType==1}}" class="cardWrp type{{item.itemType}}" bindtap="navigateToDetails" data-item="{{item}}">
-        <view class="typeWrp">品画</view>
+        <view class="typeWrp">佳作</view>
         <image src="{{item.imageUrl}}" mode="aspectFill" bindload="bindload"></image>
         <view class="titleWrp txt-ovh">{{item.name}}</view>
       </view>
@@ -16,7 +28,7 @@
 
       <!-- 看展 begin-->
       <view wx:if="{{item.itemType==2}}" class="cardWrp type{{item.itemType}}" bindtap="navigateToDetails" data-item="{{item}}">
-        <view class="typeWrp">看展</view>
+        <view class="typeWrp">展览</view>
         <image src="{{item.imageUrl}}" mode="aspectFill" bindload="bindload"></image>
         <view class="titleWrp bk">{{item.name}}</view>
       </view>
@@ -65,4 +77,7 @@
 <template is="auth" data="{{showAuthAlert}}"></template>
 <!-- 授权:ui模板 end-->
 <import src="../../template/tabbar/tabbar" />
-<template is="tab-bar" data="{{ tabType:1,totalNum,isIpx }}"></template>
+<template is="tab-bar" data="{{ tabType,totalNum,isIpx }}"></template>
+
+<import src="../../template/empty/empty.wxml" />
+<template is="empty" data="{{...emptyData}}" wx:if="{{isEmpty||isApiError}}"></template>

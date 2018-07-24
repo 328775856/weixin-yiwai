@@ -1,0 +1,14 @@
+/* pages/SignArtist/SignArtist.wxss */
+@import '../../template/empty/empty.wxss';
+#signArtist .artistImg{
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 100%;
+  margin-right: 20rpx;
+}
+
+#signArtist .weui-cell{
+  height: 178rpx;
+  padding: 39rpx 30rpx;
+  box-sizing: border-box;
+}

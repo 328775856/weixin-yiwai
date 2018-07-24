@@ -1,0 +1,11 @@
+<!--pages/ExhibitionWorks/ExhibitionWorks.wxml-->
+<import src="../../template/empty/empty.wxml"/>
+<view class='container'>
+    <image src='{{item.imageUrl}}' bindtap='goDetail' data-id="{{item.id}}"   wx:for="{{list}}" mode='widthFix' wx:key="{{index}}"></image>
+     <image src='{{item.imageUrl}}' bindtap='goDetail'  data-id="{{item.id}}"  wx:if="{{index % 2 == 0 }}" wx:for="{{list}}" mode='widthFix' wx:key="{{index}}"></image> 
+</view>
+            <view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+ <view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+    <template is="empty" data="{{...emptyDataLike}}" wx:if="{{isEmpty}}"></template>

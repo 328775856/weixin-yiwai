@@ -1,0 +1,5 @@
+@import '../../template/commentItem/commentItem.wxss';
+@import '../../template/commentInput/commentInput.wxss';
+#commentDetailsWrp{
+  padding-bottom: 130rpx;
+}

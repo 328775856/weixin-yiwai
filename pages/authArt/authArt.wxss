@@ -1,0 +1,88 @@
+/* pages/AuthArt/AuthArt.wxss */
+.authArt-tab{
+  text-align: center; 
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 111;
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.weui-tab_content{
+   margin-top: 85rpx;
+}
+
+.authArt-tab .weui-flex__item{
+  color: #999;
+  font-size: 15px;
+}
+.authArt-tab .weui-flex__item.active{
+  color: #333;
+  font-size: 17px;
+}
+
+.box-wrap{
+  padding: 30rpx;
+}
+.box-content{
+  box-shadow:1px 5px 20px rgba(0,0,0,0.15);
+  padding: 32rpx;
+}
+.box-content-email{
+  font-size: 17px;
+  color: #333;
+  padding-bottom: 40rpx;
+}
+
+.text-underline{
+  text-decoration: underline;
+}
+
+.box-content-title{
+  padding-bottom: 40rpx;
+}
+.box-content-title .title{
+  font-size: 14px;
+}
+.box-content-title .desc,.box-content-title .weui-flex{
+  font-size: 14px;
+  color: #999;
+}
+
+.box-content-title .weui-flex_label{
+  width: 150rpx;
+}
+
+.box-content-title .weui-flex_label.lg{
+  width: 235rpx;
+}
+.box-content-title .weui-flex_label.sm{
+  width: 125rpx;
+}
+.grayColor{
+  color: #999;
+}
+
+.box-question{
+  padding: 40rpx;
+}
+
+.box-question .weui-flex{
+  line-height: 1.8;
+}
+
+.box-question .weui-flex,.box-question .box-question_anwser{
+  font-size: 13px;
+  line-height: 1.8;
+} 
+
+.box-question_anwser{
+  margin-bottom: 38rpx;
+}
+
+.box-question  .weui-flex_Q{
+  color: #FBCA00;
+}

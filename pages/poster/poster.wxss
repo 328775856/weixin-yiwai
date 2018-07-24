@@ -1,0 +1,56 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+
+#posterWrp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cardCreateWrp image {
+  /* width: 640rpx;
+  height: 980rpx;  */
+  width: 680rpx;
+  height: 1020rpx;
+  /* border: 1px solid; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.myCanvas {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 770px;
+  height: 1168px;
+  /* width: 750px;
+  height: 1148px; */
+}
+
+.bgWrp {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+.btnSaveImg {
+  width: 120rpx;
+  height: 120rpx;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 35rpx;
+}

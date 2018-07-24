@@ -1,0 +1,52 @@
+/* pages/EditMember/EditMember.wxss */
+.avatarImg{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+}
+
+.ey-btn.btn-primary{
+  box-shadow:8px 5px 25px rgba(27,28,31,0.15);
+  color:#fff;
+  background: linear-gradient(to right,#FBCA00,#FFEB00);
+}
+
+.picture_modal{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 111;
+  background-color: #fff;
+  display: none;
+  overflow-y: scroll;
+}
+.picture_modal.active{
+   display: block;
+}
+
+.backgroundImage{
+  width: 380rpx;
+  height: 235rpx;
+  line-height: 235rpx;
+}
+
+.backgroundImage image{
+  width: 100%;
+  height: 100%;
+}
+
+.container{
+  column-count: 2;  /*设置列数*/ 
+  column-gap:4rpx;
+  padding: 30rpx;
+}
+
+.container image{
+  width: 165px;
+  height: 165px;
+  border-radius: 5rpx;
+}
+
+

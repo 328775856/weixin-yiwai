@@ -1,0 +1,21 @@
+<!--pages/Tickets/Tickets.wxml-->
+<import src="../../template/empty/empty.wxml"/>
+<view id='tickets'>
+    <view  wx:for="{{dataList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg {{item.className}}" hover-class="weui-cell_active" bindtap="navigateToExhibitionTicket" data-item="{{item}}">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb round" src="{{item.exhibitionImage}}?imageView2/1/w/180/h/240/q/50" mode='aspectFill' />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title fontsize15">{{item.exhibitionName}}</view>
+        <view class='weui-media-box__title fontsize15'>{{item.place}}</view>
+        <view class="weui-media-box__title fontsize13"><text>{{item.ticketStartTime}}</text>~<text>{{item.ticketEndTime}}</text></view>
+        </view>
+    </view>
+
+<view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+        <template is="empty" data="{{...emptyDataLike}}" wx:if="{{isEmpty}}"></template>
+
+<view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+</view>

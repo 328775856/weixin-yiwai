@@ -1,0 +1,12 @@
+<view id="exhibitionTicketWrp">
+  <!-- 展券 begin -->
+  <view class="cardCreateWrp">
+    <!-- <image src="{{'./卡片上部.png'}}" class="topImgWrp" mode="aspectFill"></image> -->
+    <image src="{{cardCreateImgUrl}}" mode="aspectFill" class="imgCardWrp" style="height:{{HEIGHT}}rpx;" bindload="bindload"></image>
+    <image src="{{'https://img.kanhua.yiwaiart.com/ttt/EY_img_youcuo@2x.png'}}" class="iconLogo" wx:if="{{isShowLogo}}"></image>
+  </view>
+  <canvas class="myCanvas" canvas-id="myCanvas" style="height:{{HEIGHT}}px;" />
+  <!-- 展券 end -->
+  <!-- <view class="ey-btn btnSaveImg" bindtap="saveImg" wx:if="{{isShowSaveBtn}}">保存图片</view> -->
+  <image src="../../images/EY_btn_download.png" class="btnSaveImg" bindtap="saveImg" wx:if="{{cardCreateImgUrl!=''}}"></image>
+</view>

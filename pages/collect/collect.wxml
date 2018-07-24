@@ -1,0 +1,43 @@
+<!--pages/collect/collect.wxml-->
+<import src="../../template/empty/empty.wxml"/>
+<view id='collect'>
+  <view class="weui-panel weui-panel_access" wx:for="{{dataList}}" wx:key="item">
+       <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{item.gmtCreate}}</view>
+              <view class="weui-media-box__desc">
+               喜欢
+              </view>
+            <view class='admirer-box'>
+              <view class='admirer-box_wrap'>
+              <view class='admirer-box_media'>
+                  <navigator url="{{item.url}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{item.imageUrl}}?imageView2/1/w/272/h/280/q/50"  mode='aspectFill'/>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                      <view  style='font-size:14px;' class='weui-media-box_title'>{{item.productName}}</view>
+                      <view style="font-size:12px;" class='weui-media-box_title'>
+                      {{item.artistName}}
+                      </view>
+
+                       <view class='weui-media-box_bottom'> <image src='../../images/EY_icon_comment@2x.png'></image>{{item.commentNum}}</view> 
+                    </view>
+                </navigator>
+              </view>
+              </view>
+            </view>
+            </view>
+          </view>
+    </view>
+
+    <!-- 加载动画 -->
+<view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+ <view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+    <template is="empty" data="{{...emptyDataLike}}" wx:if="{{isEmpty}}"></template>
+</view>
+
+
+

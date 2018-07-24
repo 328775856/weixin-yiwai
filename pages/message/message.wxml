@@ -1,0 +1,24 @@
+<!--pages/Message/Message.wxml-->
+<import src="../../template/empty/empty.wxml"/>
+<view id='memberList'>
+<scroll-view scroll-y="true" style="height:100%" bindscrolltolower="lowerLike" scroll-top="" scroll-with-animation="true">
+      <view  wx:for="{{messageList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb round" src="{{item.customerImg}}" mode="aspectFill" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.customerName}}</view>
+        <view class="weui-media-box__desc">{{item.desc}}</view>
+        <view class='content' wx:if="{{item.content}}">{{item.content}}</view>
+        <view class="weui-media-box__desc">{{item.gmtCreate}}</view>
+        </view>
+    </view>
+</scroll-view>
+    <!-- 加载动画 -->
+<view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+
+ <view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+    <template is="empty" data="{{...emptyDataLike}}" wx:if="{{isEmpty}}"></template>
+</view>

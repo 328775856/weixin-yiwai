@@ -1,0 +1,123 @@
+<!--pages/AuthArt/AuthArt.wxml-->
+<view id='authArt'>
+  <view class='authArt-tab'>
+    <view class='weui-flex'>
+      <view class='weui-flex__item {{item.className}}' wx:key="item" bindtap='changeTab' wx:for="{{tabList}}" data-idx="{{item.index}}">{{item.text}}</view>
+      <!-- <view class='weui-flex__item active'>艺术家</view>
+      <view class='weui-flex__item'>机构</view> -->
+    </view>
+  </view>
+
+<!-- type 1为机构 -->
+  <view class='weui-tab_content'>
+    <view class='box-wrap' wx:if="{{index ==1}}">
+      <view class='box-content'>
+        <view class='box-content-email'>
+        请将所需资料发送至：
+         <view class='text-underline'>service@yiwaiart.com.cn</view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>邮件标题</view>
+          <view class='desc'>意外认证 - 机构名称</view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>邮件正文</view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>机构全称:</view>
+            <view class='weui-flex__item'>北京匡时国际拍卖有限公司</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label sm'>用户名:</view>
+            <view class='weui-flex__item'>北京匡时</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label lg'>管理员手机号码:</view>
+            <view class='weui-flex__item'>1xxxxxxxxxx</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>常用邮箱:</view>
+            <view class='weui-flex__item'>xxxxxxxx@qq.com</view>
+          </view>
+           <view class='weui-flex'>
+            <view class='weui-flex_label'>微信昵称:</view>
+            <view class='weui-flex__item'>饭醒了叫我</view>
+          </view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>附件：</view>
+          <view class='desc'>
+            工商营业执照
+          </view>
+          <view class='desc'>
+            管理员身份证正反面或护照封面和首页
+          </view>
+          <view class='desc'>
+          管理员职位证明（如：名片/工牌、在职证明）
+          </view>
+          </view>
+          <view class='box-content-title'>
+          <view class='desc'>本人承诺附件作品为本人原创，如有侵权行为，个人愿承担一切责任。              </view>
+        </view>
+      </view>
+    </view>
+    <view class='box-wrap' wx:else>
+      <view class='box-content'>
+        <view class='box-content-email'>
+        请将所需资料发送至：
+         <view class='text-underline'>service@yiwaiart.com.cn</view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>邮件标题</view>
+          <view class='desc'>意外认证 - 用户名</view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>邮件正文</view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>真实姓名:</view>
+            <view class='weui-flex__item'>某某某</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>常用笔名:</view>
+            <view class='weui-flex__item'>xxx</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>手机号码:</view>
+            <view class='weui-flex__item'>1xxxxxxxxxx</view>
+          </view>
+          <view class='weui-flex'>
+            <view class='weui-flex_label'>常用邮箱:</view>
+            <view class='weui-flex__item'>xxxxxxxx@qq.com</view>
+          </view>
+           <view class='weui-flex'>
+            <view class='weui-flex_label'>微信昵称:</view>
+            <view class='weui-flex__item'>饭醒了叫我</view>
+          </view>
+        </view>
+        <view class='box-content-title'>
+          <view class='title'>附件：</view>
+          <view class='desc'>身份证正反面或护照封面和首页；个人新近创作10件作品图片</view>
+      </view>
+        <view class='box-content-title'>
+          <view class='desc'>本人承诺附件作品为本人原创，如有侵权行为，个人愿承担一切责任。       </view>   
+      </view>
+    </view>
+    </view>
+    <view class='box-question'>
+      <view class='weui-flex'>
+        <view class='weui-flex_Q'>Q:</view>
+        <view class='weui-flex_item'>任何用户都可以申请认证吗？获得加V特权有哪些优势？</view>
+      </view>
+      <view class='box-question_anwser grayColor'>
+        目前，意外艺术的机构用户及艺术家可申请认证。若您所提交的材料通过审核，实名认证用户的意外艺术账号可获得加V特权显示，还可拥有自己的展现信息。
+      </view>
+
+      <view class='weui-flex'>
+        <view class='weui-flex_Q'>Q:</view>
+        <view class='weui-flex_item'>申请实名认证的流程是怎样的？</view>
+      </view>
+      <view class='box-question_anwser grayColor'>
+        您需要仔细阅读认证须知，按照要求将所需材料发送至我们的官方邮箱(service@yiwaiart.com.cn)，我们会在三个工作日内完成认证处理，并将最后的结果以站内通知和邮件回复的形式告知您。
+      </view>
+    </view>
+  </view>
+</view>

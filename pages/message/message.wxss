@@ -1,0 +1,28 @@
+/* pages/Message/Message.wxss */
+
+@import '../../template/empty/empty.wxss';
+.weui-media-box__thumb.round{
+  border-radius: 100%;
+}
+
+
+
+#memberList .weui-media-box__hd_in-appmsg{
+  width: 80rpx;
+  height: 80rpx;
+}
+#memberList .weui-media-box_appmsg{
+  align-items: flex-start;
+}
+#memberList .content{
+  font-size: 28rpx;
+}
+
+#memberList .weui-media-box__title{
+  font-size: 30rpx;
+  line-height: 1;
+}
+
+#memberList .weui-media-box__desc{
+  line-height: 1.8;
+}

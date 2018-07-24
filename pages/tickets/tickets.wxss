@@ -1,0 +1,34 @@
+/* pages/Tickets/Tickets.wxss */
+@import '../../template/empty/empty.wxss';
+page{
+  background-color: #f7f7f7;
+}
+#tickets .weui-media-box_appmsg{
+  align-items: flex-start;
+}
+#tickets .weui-media-box__hd_in-appmsg{
+  width: 180rpx;
+  height: 240rpx;
+}
+#tickets .weui-media-box.disabled{
+  color: #ccc;
+}
+
+
+#tickets .weui-media-box{
+  margin-bottom: 10rpx;
+  background-color: #fff;
+}
+#tickets .weui-media-box::before{
+  display: none;
+}
+.weui-media-box__thumb.round{
+  border-radius: 5rpx;
+}
+
+.fontsize15{
+  font-size: 30rpx !important;
+}
+.fontsize13{
+  font-size: 26rpx !important;
+}

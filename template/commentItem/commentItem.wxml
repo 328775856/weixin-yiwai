@@ -1,33 +1,32 @@
 <!-- 评论列表模板1 begin-->
 <template name="commentItem">
-  <view class="commentItemWrp">
-    <view class="sealWrp hot" wx:if="{{isHot==1}}">
-      <view class="wordsWrp">HOT</view>
+  <view class="commentItemWrp {{m2?'m2':''}}">
+    <view class="sealWrp best" wx:if="{{isHot==1}}">
+      <view class="wordsWrp">BEST</view>
     </view>
     <view class="mui-flex alc">
-      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
-        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
+      <view class="headWrp" bindtap="navigationPersonalPage" data-type="{{isVip==0?1:isVip}}" data-be-visitor-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}"></image>
         <!-- 需要区分黄v和蓝v -->
-        <image wx:if="{{isVip!=0}}" class="iconV" src="{{isVip==1?'../../images/EY_icon_VIP@2x.png':'../../images/EY_icon_VIP@2x.png'}}"></image>
+        <image wx:if="{{isVip==2}}" class="iconV" src="{{'../../images/EY_icon_vip_2.png'}}"></image>
+        <image wx:if="{{isVip==3}}" class="iconV" src="{{'../../images/EY_icon_vip_3.png'}}"></image>
       </view>
       <view class="cell">
         <view class="nameWrp txt-ovh">{{customerName}}</view>
         <view class="dateWrp">{{gmtCreate}}</view>
       </view>
-
-
     </view>
     <view class="contentWrp bk">{{content}}</view>
     <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
 
     <view class="opeWrp">
       <view class="clearfix">
-        <view class="fr">
-          <view class="commentImgWrp fl mui-flex alc" bindtap="navigateToReply" data-commentid="{{id}}">
+        <view class="fr mui-flex alc">
+          <view wx:if="{{!isNoReplyWrp}}" class="commentImgWrp fl mui-flex alc" bindtap="navigateToReply" data-commentid="{{id}}">
             <image src="../../images/EY_icon_comment@2x.png"></image>
             <view wx:if="{{replyNum>0}}">{{replyNum}}</view>
           </view>
-          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
+          <view class="likeImgWrp fl  mui-flex alc" bindtap="tapSetCommentLike" data-comment-id="{{id}}">
             <image src="{{isLike&&isLike==1?'../../images/EY_icon_like_selected@2x.png':'../../images/EY_icon_like_normal@2x.png'}}"></image>
             <view wx:if="{{commentLikeNum>0}}">{{commentLikeNum}}</view>
           </view>
@@ -43,29 +42,32 @@
 <!-- 评论列表模板2 begin-->
 <template name="commentItem2">
   <view class="commentItemWrp commentItemWrp2">
-    <!-- <view class="sealWrp hot">
-      <view class="wordsWrp">HOT</view>
-    </view> -->
     <view class="mui-flex alc">
-      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
-        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
-        <image class="iconV" src="{{'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'}}"></image>
+      <view class="headWrp" bindtap="navigationPersonalPage" data-type="{{isVip==0?1:isVip}}" data-be-visitor-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}"></image>
+        <!-- 需要区分黄v和蓝v -->
+        <image wx:if="{{isVip==2}}" class="iconV" src="{{'../../images/EY_icon_vip_2.png'}}"></image>
+        <image wx:if="{{isVip==3}}" class="iconV" src="{{'../../images/EY_icon_vip_3.png'}}"></image>
       </view>
       <view class="cell">
-        <view class="nameWrp txt-ovh">{{'博物馆'}}</view>
-        <view class="dateWrp">{{'2018-06-30'}}</view>
+        <view class="nameWrp txt-ovh">{{customerName}}</view>
+        <view class="dateWrp">{{gmtCreate}}</view>
       </view>
 
-
+      <view class="isGoodIcon" wx:if="{{isGood}}">优秀评论</view>
     </view>
-    <view class="contentWrp bk">{{'他们是懂美学的牛顿。懂人类学的梵谷。懂孙子兵法的甘地。血液里充满答案，越来越少的问题能让他们恐惧。彷佛站在巨人的肩牓上，习惯俯视一切。'}}</view>
+    <view class="contentWrp bk">{{content}}</view>
     <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
     <view class="opeWrp">
       <view class="clearfix">
-        <view class="fr">
-          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
-            <image src="{{}}"></image>
-            <view>{{666}}</view>
+        <view class="fr mui-flex alc">
+          <view class="commentImgWrp fl mui-flex alc">
+            <image src="../../images/EY_icon_comment@2x.png"></image>
+            <view wx:if="{{replyNum>0}}">{{replyNum}}</view>
+          </view>
+          <view class="likeImgWrp fl  mui-flex alc">
+            <image src="{{isLike&&isLike==1?'../../images/EY_icon_like_selected@2x.png':'../../images/EY_icon_like_normal@2x.png'}}"></image>
+            <view wx:if="{{commentLikeNum>0}}">{{commentLikeNum}}</view>
           </view>
         </view>
       </view>
@@ -77,34 +79,62 @@
 <!-- 评论列表模板3 begin-->
 <template name="commentItem3">
   <view class="commentItemWrp commentItemWrp3">
+    <view class="sealWrp best" wx:if="{{isHot==1}}">
+      <view class="wordsWrp">BEST</view>
+    </view>
     <view class="mui-flex alc">
-      <view class="headWrp" bindtap="navigationPersonalPage" data-customer-id="{{customerId}}">
-        <image class="headImg" src="{{customerImg}}" bindload="bindloadhead" binderror="binderrorhead"></image>
-        <image class="iconV" src="{{'https://wx.qlogo.cn/mmopen/vi_32/kfMibDakwv2OPaN6LZrpuDrDsPxrZtMTQDM2zkkZrsr0ezdKT0HZQicRHqciavQ7m3COC6ZoU3EaumgTrbzsgqtxA/132'}}"></image>
+      <view class="headWrp" bindtap="navigationPersonalPage" data-type="{{isVip==0?1:isVip}}" data-be-visitor-id="{{customerId}}">
+        <image class="headImg" src="{{customerImg}}"></image>
+        <!-- 需要区分黄v和蓝v -->
+        <image wx:if="{{isVip==2}}" class="iconV" src="{{'../../images/EY_icon_vip_2.png'}}"></image>
+        <image wx:if="{{isVip==3}}" class="iconV" src="{{'../../images/EY_icon_vip_3.png'}}"></image>
       </view>
       <view class="cell">
-        <view class="nameWrp txt-ovh">{{'博物馆'}}</view>
-        <view class="dateWrp">{{'2018-06-30'}}</view>
+        <view class="nameWrp txt-ovh">{{customerName}}</view>
+        <view class="dateWrp">{{gmtCreate}}</view>
       </view>
 
-      <view class="isGoodIcon" wx:if="{{isGood}}">优秀评论</view>
     </view>
-    <view class="contentWrp bk">{{'他们是懂美学的牛顿。懂人类学的梵谷。懂孙子兵法的甘地。血液里充满答案，越来越少的问题能让他们恐惧。彷佛站在巨人的肩牓上，习惯俯视一切。'}}</view>
+    <view class="contentWrp bk" bindtap="tapReply" data-reply-type="{{1}}" data-to-reply-id="{{0}}" data-comment-id="{{id}}" data-to-customer-id="{{customerId}}" data-to-customer-name="{{customerName}}">{{content}}</view>
     <!-- <view class="likeWrp bk">意外艺术、博物馆...等16人点赞了这条评论。</view> -->
     <view class="opeWrp">
       <view class="clearfix">
-        <view class="fr">
-          <view class="commentImgWrp fl mui-flex alc" bindtap="navigateToReply" data-commentid="{{id}}">
-            <image src="{{}}"></image>
-            <view>{{998}}</view>
+        <view class="fr mui-flex alc">
+          <view class="commentImgWrp fl mui-flex alc" bindtap="tapReply" data-reply-type="{{1}}" data-to-reply-id="{{0}}" data-comment-id="{{id}}" data-to-customer-id="{{customerId}}" data-to-customer-name="{{customerName}}">
+            <image src="../../images/EY_icon_comment@2x.png"></image>
+            <view wx:if="{{replyNum>0}}">{{replyNum}}</view>
           </view>
-          <view class="likeImgWrp fl  mui-flex alc" bindtap="setCommentLike" data-commentid="{{id}}" data-index="{{index}}">
-            <image src="{{}}"></image>
-            <view>{{666}}</view>
+          <view class="likeImgWrp fl  mui-flex alc" bindtap="tapSetCommentLike" data-comment-id="{{id}}">
+            <image src="{{isLike&&isLike==1?'../../images/EY_icon_like_selected@2x.png':'../../images/EY_icon_like_normal@2x.png'}}"></image>
+            <view wx:if="{{commentLikeNum>0}}">{{commentLikeNum}}</view>
           </view>
         </view>
       </view>
     </view>
+
+    <view class="replyListWrp" wx:if="{{replyList&&replyList.length>0}}">
+      <view class="replyItemWrp" wx:for="{{replyList}}" wx:key="">
+        <view class="mui-flex alc">
+          <view class="headWrp" bindtap="navigationPersonalPage" data-type="{{item.isVip==0?1:item.isVip}}" data-be-visitor-id="{{item.customerId}}">
+            <image class="headImg" src="{{item.customerImg}}"></image>
+            <!-- 需要区分黄v和蓝v -->
+            <image wx:if="{{item.isVip==2}}" class="iconV" src="{{'../../images/EY_icon_vip_2.png'}}"></image>
+            <image wx:if="{{item.isVip==3}}" class="iconV" src="{{'../../images/EY_icon_vip_3.png'}}"></image>
+          </view>
+          <view class="cell">
+            <view class="nameWrp txt-ovh">{{item.customerName}}
+              <block wx:if="{{item.replyType==2}}">回复：@ {{item.toCustomerName}}</block>
+            </view>
+          </view>
+        </view>
+
+        <view class="contentWrp bk" bindtap="tapReply" data-reply-type="{{2}}" data-to-reply-id="{{item.id}}" data-comment-id="{{id}}" data-to-customer-id="{{item.customerId}}" data-to-customer-name="{{item.customerName}}">{{item.content}}</view>
+        <view class="dateWrp">{{item.gmtCreate}}</view>
+
+      </view>
+
+    </view>
+
   </view>
 </template>
 <!-- 评论列表模板3 end-->

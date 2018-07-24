@@ -52,11 +52,31 @@
   top: 50%;
   left: 0%;
   transform: translateY(-50%);
-
-  box-shadow:6rpx 8rpx 20rpx rgba(27,28,31,0.23);
+  box-shadow: 6rpx 8rpx 20rpx rgba(27, 28, 31, 0.23);
 }
 
 /* 音频播放组件 end */
+
+/* 操作 begin */
+.opeWrp{
+  width: 360rpx;
+  margin: 0 auto;
+  margin-top: 45rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.opeWrp .iconL, .opeWrp .iconR {
+  width: 32rpx;
+  height: 34rpx;
+}
+
+.opeWrp .iconPlay {
+  width: 43rpx;
+  height: 52rpx;
+}
+
+/* 操作 end */
 
 .plr30 {
   padding-left: 30rpx;

@@ -1,0 +1,66 @@
+/* pages/Exhibition/Exhibition.wxss */
+/* @import '../../template/empty/empty.wxss'; */
+page{
+  background-color: #f7f7f7;
+}
+#exhibition .weui-media-box_appmsg{
+  align-items: stretch;
+}
+#exhibition .weui-media-box__hd_in-appmsg{
+  width: 180rpx;
+  height: 240rpx;
+}
+
+#exhibition .weui-media-box__bd_in-appmsg{
+  position: relative
+}
+#exhibition .weui-media-box.disabled{
+  color: #ccc;
+}
+
+#exhibition .weui-media-box{
+  margin-bottom: 10rpx;
+  background-color: #fff;
+}
+#exhibition .weui-media-box::before{
+  display: none;
+}
+.weui-media-box__thumb.round{
+  border-radius: 5rpx;
+}
+
+.weui-media-box_bottom{
+  position: absolute;
+  bottom: 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.weui-btn-area{
+  margin-top: 130rpx;
+}
+
+.ey-btn.btn-primary{
+  box-shadow:8px 5px 25px rgba(27,28,31,0.15);
+  color:#27282D;
+  background: linear-gradient(to right,#FBCA00,#FFEB00);
+}
+
+.weui-media-box__desc{
+  line-height: 2;
+}
+
+.empty-wrap{
+  margin: 150px auto;
+  text-align: center;
+}
+.empty-image{
+  width: 100rpx;
+  height: 100rpx;
+  display: inline-block;
+}
+
+.empty-title{
+  color: RGBA(153, 153, 153, 1);
+  font-size: 15px;
+}

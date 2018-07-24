@@ -1,0 +1,184 @@
+<!--pages/MemberDetail/MemberDetail.wxml-->
+
+<import src="../../template/commentItem/commentItem.wxml"/>
+<import src="../../template/artistListScroll/artistListScroll.wxml"/>
+<import src="../../template/productListScroll/productListScroll.wxml"/>
+<view id='person' wx:if="{{type==1}}">
+     <view class='artist-banner'>
+        <button class='btn-share' open-type="share" plain='{{true}}'></button>
+        <image src='{{userInfo.backgroundImage}}' mode='aspectFill'></image>
+   </view>
+  <view class='artist-media' style='padding-bottom:0px;'>
+        <view class="weui-media-box weui-media-box_appmsg">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" mode='aspectFill' src="{{userInfo.avatarUrl}}" />
+              <image wx:if="{{userInfo.isVip}}" class="vip-icon" src='https://img.kanhua.yiwaiart.com/Ey_logo_flat.png'></image>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{userInfo.nickName}}</view>
+            </view>
+        </view>
+         <view style='padding:0 15px;font-size:15px;'>{{userInfo.signature}}</view>  
+  </view>
+  <view wx:if="{{dataList.length>0 || bestCommentArr.length>0}}">
+      <view class='borderBg'></view>
+        <template is="commentItem2"  wx:for="{{bestCommentArr}}" wx:key="" data="{{...item}}"></template>
+  <template is="commentItem2"  wx:for="{{dataList}}" wx:key="" data="{{...item}}"></template>
+  </view>
+  <!-- <view style='color:#999;' wx:else>该用户很懒，什么都没有留下！</view> -->
+
+</view>
+
+<!--艺术家主页  -->
+<view id='artsit' wx:if="{{type==2}}">
+   <view class='artist-banner'>
+           <button class='btn-share' open-type="share" plain='{{true}}'></button>
+        <image src='{{userInfo.backgroundImage}}' mode='aspectFill'></image>
+   </view>
+  <view class='artist-media' style='padding-bottom:0px;'>
+        <view class="weui-media-box weui-media-box_appmsg">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" src="{{userInfo.avatarUrl}}" mode='aspectFill' />
+              <image  class="vip-icon" src='../../images/EY_icon_vip_2.png'></image>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{userInfo.nickName}}</view>
+            </view>
+        </view>
+         <view style='padding:0 15px;font-size:15px;'>{{userInfo.signature}}</view>  
+  </view>
+
+  <view class='borderBg'></view>
+    <!--简介  -->
+  <view class='box-wrap' style='margin-top:0;'>
+  <view class='box-inner'>
+    <view class='box-title'>简介</view>
+    <view class='box-content'>
+      {{artistInfo.artDescription}}
+    </view>
+  </view>
+  </view>
+
+
+      <!--作品  -->
+  <view wx:if="{{artistProductList.length>0}}">
+    <view class='borderBg'></view>
+  <view class='box-wrap'>
+  <view class='box-inner'>
+    <view class='box-title'>作品 {{artistTotalItems}}</view>
+    <view class='box-content'>
+    <view>
+          <template is="productListScroll" data="{{productList:artistProductList}}"></template>
+    </view>
+    </view>
+  </view>
+  </view>
+  </view>   
+
+
+        <!--展览  -->
+ <!-- <view class='box-wrap'>
+  <view class='box-inner box-inner_padding'>
+    <view class='box-title'>展览</view>
+    <view>
+      <view  wx:for="{{exhibitionList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg exhibition" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb round" src="{{item.img}}" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.title}}</view>
+        <view class="weui-media-box__desc">{{item.duration}}</view>
+      </view>
+    </view>
+    </view>
+  </view>
+  </view> -->
+
+</view>
+
+<!--机构主页  -->
+<view id="company" wx:if="{{type==3}}">
+  <view class='company-banner'>
+          <button class='btn-share' open-type="share" plain='{{true}}'></button>
+    <image src='{{organInfo.backgroundImage}}' mode='aspectFill'></image>
+  </view>
+  <view class='company-media' style='padding-bottom:5px;'>
+      <view style='padding-bottom:0;' class="weui-media-box weui-media-box_appmsg" >
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" src="{{organInfo.avatar}}" mode="aspectFill" />
+              <image  class="vip-icon" src='../../images/EY_icon_vip_3.png'></image>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{organInfo.name}}</view>
+              <view class="weui-media-box__desc">{{organInfo.signature}}</view>
+            </view>
+        </view>
+  </view>
+    <view class='borderBg'></view>
+  <!--简介  -->
+  <view class='box-wrap'>
+  <view class='box-inner'>
+    <view class='box-title'>简介</view>
+    <view class='box-content'>
+      {{organInfo.briefIntroduction}}
+    </view>
+  </view>
+  </view>
+
+  <view wx:if="{{artistList.length>0}}">
+      <view class='borderBg'></view>
+  <!--签约艺术家  -->
+  <view class='box-wrap'>
+  <view class='box-inner'>
+    <view class='box-title'>签约艺术家({{artistListTotal}})</view>
+    <view class='box-content'>
+       <template is="artistListScroll" data="{{artistList}}"></template>
+    </view>
+  </view>
+  </view>
+  </view>
+
+
+  <!--馆藏  -->
+  <view wx:if="{{productList.length>0}}">
+    <view class='borderBg'></view>
+  <view class='box-wrap'>
+  <view class='box-inner'>
+    <view class='box-title'>馆藏({{productListTotal}})</view>
+    <view class='box-content'>
+         <template is="productListScroll" data="{{productList}}"></template>
+    </view>
+  </view>
+  </view>
+  </view>
+
+
+  <!--展览  -->
+  <view wx:if="{{organList.length>0}}">
+      <view class='borderBg'></view>
+ <view class='box-wrap'>
+  <view class='box-inner box-inner_padding'>
+    <view class='box-title'>展览({{organTotalItems}})</view>
+    <view>
+      <view  wx:for="{{organList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg exhibition">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image mode='aspectFill' class="weui-media-box__thumb round" src="{{item.image}}?imageView2/1/w/180/h/240/q/50" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.exhibitionName}}</view>
+        <view class="weui-media-box__desc"><text>{{item.exhibitionStartTime}}</text>~<text>{{item.exhibitionStartTime}}</text></view>
+      </view>
+    </view>
+    </view>
+  </view>
+  </view>
+  </view>
+
+</view>
+
+<view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+
+ <view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+

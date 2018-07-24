@@ -1,0 +1,16 @@
+<!--pages/SignArtist/SignArtist.wxml-->
+<import src="../../template/empty/empty.wxml"/>
+<view id='signArtist'>
+    <navigator url="{{item.url}}" wx:for="{{dataList}}" wx:key="item"  class="weui-cell" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+          <image class='artistImg' src="{{item.imageUrl}}?imageView2/1/w/100/h/100/q/50" mode='aspectFill' style="vertical-align: middle;"></image>
+      </view>
+      <view class="weui-cell__bd">{{item.name}}</view>
+  </navigator>
+
+  <view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+
+        <template is="empty" data="{{...emptyDataLike}}" wx:if="{{isEmpty}}"></template>
+</view>

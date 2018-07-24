@@ -1,0 +1,73 @@
+/* pages/collect/collect.wxss */
+
+@import '../../template/empty/empty.wxss';
+#collect .weui-media-box_appmsg{
+  align-items: stretch;
+}
+#collect .weui-media-box__hd_in-appmsg{
+  width: 272rpx;
+  height: 280rpx;
+}
+
+
+
+.admirer-box{
+  margin-top: 20rpx;
+  border-radius:5rpx;
+  box-shadow:3rpx 5rpx 20rpx rgba(27,28,31,0.1);
+}
+
+.admirer-box_media{
+  padding: 10rpx;
+  background-color: rgba(217,217,217,0.3);
+}
+
+.admirer-box_media .weui-media-box_title{
+  color:#999999;
+}
+
+.weui-panel::before{
+  display: none;
+}
+
+.weui-panel{
+  margin-top: 0;
+}
+
+.admirer-box_media .weui-media-box{
+  padding: 5px;
+}
+
+.admirer-box_wrap{
+  padding: 30rpx;
+}
+
+#collect .weui-media-box__bd_in-appmsg{
+  position: relative
+}
+#collect .weui-media-box.disabled{
+  color: #ccc;
+}
+
+
+#collect .weui-media-box::before{
+  display: none;
+}
+.weui-media-box__thumb.round{
+  border-radius: 5rpx;
+}
+
+.weui-media-box_bottom{
+  position: absolute;
+  bottom: 0;
+  color:#999;
+  font-size: 13px;
+}
+
+.weui-media-box_bottom image{
+  width: 28rpx;
+  height: 26rpx;
+  position: relative;
+  top: 6rpx;
+  margin-right: 5px;
+}

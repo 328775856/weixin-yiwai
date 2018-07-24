@@ -1,0 +1,50 @@
+<!--pages/applyExhiibition/applyExhibition.wxml-->
+<view id='applyExhibition'>
+  <view class='box-wrap'>
+    <view class='box-inner'>
+      <view class='box-title' style='color:#fff;'>
+        展览招募计划
+      </view>
+      <view class='box-content'>
+      <view class='box-content_inner'>
+        <view class='box-content_title'>
+          招募对象
+        </view>
+        <view class='box-content_info'>
+          官方认证的机构或艺术家
+        </view>
+      </view>
+        <view class='box-content_inner'>
+        <view class='box-content_title'>
+          您需要提供
+        </view>
+        <view class='box-content_info'>
+           1.展览作品数量不少于10件 
+        </view>
+        <view class="box-content_info">
+          2.提交展览作品的高清图和作品信息，包括名称、尺寸、材质、创作时间、作品介绍等
+        </view>
+
+        <view class="box-content_info">
+          3.提交参展艺术家的个人简历和生活近照以及您的联系方式
+        </view>
+
+        <view class='box-content_info'>
+          4.提交展览详情文案，包括展览亮点、展览详情介绍、作品介绍等
+        </view>
+        </view>
+
+        <view class='box-content_inner'>
+          <view class='box-content_title'>
+          官邮
+        </view>
+        <view class='text-underline'>service@yiwaiart.com.cn</view>
+        </view>
+
+        <view class='box-content_info'>
+          我们会在三个工作日内完成认证处理，并将最后的结果以站内通知和邮件回复的形式告知你
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+/* pages/myComment/myComment.wxss */
+
+/* pages/Admirer/Admirer.wxss */
+
+
+@import '../../template/empty/empty.wxss';
+page{
+  background-color: #f7f7f7;
+}
+#myComment .weui-media-box_text.weui-media-box{
+  padding: 15px 15px 25px;
+}
+.weui-panel::before{
+  display: none;
+}
+
+
+#myComment .weui-media-box__hd_in-appmsg{
+  width: 240rpx;
+  height: 110rpx;
+}
+
+.admirer-box{
+  margin-top: 20rpx;
+  border-radius:5rpx;
+  box-shadow:3rpx 5rpx 20rpx rgba(27,28,31,0.1);
+}
+
+.admirer-box_wrap{
+  padding: 30rpx;
+}
+
+.admirer-box_word{
+  font-size: 30rpx;
+  color:#333;
+}
+
+.fontsize15{
+  font-size: 30rpx;
+}
+
+.admirer-box_media{
+  margin-top: 24rpx;
+  background-color: RGBA(217, 217, 217, .3);
+}
+
+.weui-panel:first-child:after{
+  display: none;
+}
+.weui-panel{
+  margin-top: 0;
+}
+.admirer-box_media .weui-media-box{
+  padding: 10px 15px;
+}
+
+.bold{
+  color: #333;
+  font-size: 15px;
+  padding: 0 12rpx;
+}
+
+.weui-media-box__title image{
+  width: 28rpx;
+  height: 26rpx;
+  margin-left: 20%;
+}
+
+.likeIcon{
+  width: 27rpx;
+  height: 30rpx;
+  margin-left: 20%;
+  margin-right: 2%;
+}
+
+.commentIcon{
+  width: 28rpx;
+  height: 26rpx;
+  margin-left: 20%;
+  margin-right: 2%;
+  position: relative;
+  top: 4rpx;
+}
+
+.ey-btn.comment{
+  color:#fff;
+  width: 150rpx;
+  margin-left:15px; 
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+}

@@ -1,0 +1,12 @@
+<view id="commentDetailsWrp">
+  <template is="commentItem3" wx:for="{{commentList}}" wx:key="" data="{{...item,isHavaReplyList:true}}"></template>
+  <view class="loadingGif {{isLoading?'show':''}};">
+    <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif?imageView2/2/w/130/h/130/q/50"></image>
+  </view>
+</view>
+
+
+<import src="../../template/commentItem/commentItem.wxml" />
+
+<import src="../../template/commentInput/commentInput.wxml" />
+<template is="commentInput" data="{{...commentInputObj}}"></template>

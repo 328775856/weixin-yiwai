@@ -1,0 +1,81 @@
+page {
+  height: 100%;
+  background: linear-gradient(to bottom, #ffd9e3, #fff5f8);
+}
+
+.iconRightWrp {
+  position: fixed;
+  width: 458rpx;
+  height: 415rpx;
+  right: 0;
+  top: 0;
+}
+
+#explainWrp {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  /* background-image: url(https://img.kanhua.yiwaiart.com/miniApp/activity/EY_bg_pink@1x.png); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #ffdee7;
+  min-height: 100%;
+}
+
+.topWrp .andWrp {
+  color: #fff;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+}
+
+.topWrp .logo1 {
+  width: 148rpx;
+  height: 148rpx;
+}
+
+.topWrp .logo2 {
+  width: 85rpx;
+  height: 94rpx;
+}
+
+.awardWrp {
+  padding-bottom: 50rpx;
+}
+
+.explainWrp {
+  text-align: center;
+  font-weight: bold;
+  font-size: 50rpx;
+  color: #c65977;
+}
+
+.sectionWrp {
+  margin-top: 50rpx;
+  font-weight: bold;
+  color: #c65977;
+  font-size: 36rpx;
+}
+
+.sectionWrp {
+  color: #c65977;
+}
+
+.sectionWrp .noImg {
+  width: 77rpx;
+  height: 45rpx;
+  margin-right: 40rpx;
+}
+
+.timeWrp {
+  margin-top: 25rpx;
+  color: #c65977;
+  font-size: 32rpx;
+}
+
+.wordsWrp {
+  text-align: justify;
+  color: #c65977;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  line-height: 46rpx;
+}

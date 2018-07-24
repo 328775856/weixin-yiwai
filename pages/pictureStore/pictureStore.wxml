@@ -1,0 +1,4 @@
+<!--pages/pictureStore/pictureStore.wxml-->
+<view class='container'>
+    <image src='{{item.url}}'  wx:for="{{list}}" mode='widthFix' wx:key="{{index}}"></image> 
+</view>

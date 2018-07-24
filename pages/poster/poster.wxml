@@ -1,0 +1,9 @@
+<view id="posterWrp">
+  <view class="bgWrp" style="background-image: url({{productDetails.imageUrl}}); width:{{windowWidth+20}}px;height:{{windowHeight+20}}px;"></view>
+  <view class="cardCreateWrp">
+     <image src="{{cardCreateImgUrl}}" mode="aspectFill" class="imgCardWrp" bindload="bindload"></image> 
+    <!-- <image src="{{cardCreateImgUrl}}" mode="aspectFill" class="imgCardWrp"></image> -->
+  </view>
+  <canvas class="myCanvas" canvas-id="myCanvas" style="width:{{NEW_WIDTH}}px;height:{{NEW_HEIGHT}}px;" />
+  <image src="../../images/EY_btn_download.png" class="btnSaveImg" bindtap="saveImg" wx:if="{{cardCreateImgUrl!=''}}"></image>
+</view>

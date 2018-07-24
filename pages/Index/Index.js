@@ -11,9 +11,6 @@ const {
 } = getApp();
 
 import {
-  demo,
-  getBannerList,
-  getNewCommentList,
   getHomePage
 } from './Index.service';
 Page({
@@ -22,12 +19,17 @@ Page({
     renderArr: [],
     homePageList: [],
     pageNo: 0,
-    pageSize: 2,
+    pageSize: 10,
     isEmpty: false,
+    isApiError: false,
     lock: false,
     isLoaded: false,
     isLoading: true,
     /* 首页列表 end */
+    tabType: 1,
+    emptyData: {
+      title: '暂无数据~'
+    },
   },
   onShow() {
 
@@ -53,7 +55,6 @@ Page({
     this.getHomePage();
   },
   getHomePage(fn = false) {
-    console.log('load data');
     const {
       lock,
       isLoaded
@@ -66,7 +67,7 @@ Page({
       // 系统loading
       wx.showLoading({
         title: '正在加载',
-        mask: true
+        // mask: true
       });
       const {
         pageNo,
@@ -78,6 +79,8 @@ Page({
         pageNo: no,
         pageSize,
       };
+
+      // 接口有错误
       getHomePage(postData).then(({
         data: {
           data: homePageList,
@@ -85,13 +88,10 @@ Page({
         totalPages
         }
       }) => {
+
         if (fn) fn();
         // 关闭系统loading
         wx.hideLoading();
-
-        console.log(homePageList, 'homePageList');
-        console.log(totalItems, 'totalItems');
-        console.log(totalPages, 'totalPages');
         // 判断是否已经最后一页了
 
         if (no >= totalPages) {
@@ -101,7 +101,6 @@ Page({
         }
 
         if (homePageList && homePageList.length > 0) {
-
           this.operateData(homePageList);
 
           this.setData({
@@ -122,6 +121,23 @@ Page({
           lock: false,
           isLoading: false,
         });
+      }, (res) => {
+        if (res.retType == -1 || res.retType == -2) {
+          const tempArr = [{
+            gmtCreate: "2018-07-16 21:39:58",
+            id: 18,
+            imageUrl: "https://img.kanhua.yiwaiart.com/eyadmin/8786b913-5d44-48b3-a09c-6c0d13e2c84e.jpg",
+            itemId: 272,
+            itemType: 1,
+            lead: "广场",
+            name: "广场",
+            publishTime: "2018-07-17",
+            sortNum: 0
+          }]
+          this.operateData(tempArr);
+          wx.hideLoading();
+          // this.setData({ isApiError: true });
+        }
       });
     }
   },
@@ -177,7 +193,6 @@ Page({
       }
     }
 
-    console.log([...renderArr, ...list], 'renderArr');
     this.setData({
       renderArr: [...renderArr, ...list]
     });
@@ -229,7 +244,6 @@ Page({
   //   this.getHomePage();
   // }, 
   bindload(e) {
-    console.log(e);
   },
   onPullDownRefresh() {
     this.setData({
@@ -250,6 +264,11 @@ Page({
   onReachBottom() {
     this.getHomePage();
   },
+  navigationToByBanner() {
+    myNavigateTo({
+      url: '/pages/activityPage/youthHundred/index/index'
+    });
+  },
   navigateToDetails({
     currentTarget: {
       dataset: { item }
@@ -260,9 +279,7 @@ Page({
       itemType,
       linkUrl
     } = item;
-    console.log(itemId, 'itemId');
-    console.log(itemType, 'itemType');
-    console.log(linkUrl, 'linkUrl');
+
     const url = '';
     // 品画
     if (itemType == 1) {

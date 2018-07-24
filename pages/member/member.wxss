@@ -1,0 +1,74 @@
+/* pages/member/member.wxss */
+
+/* @import '../../weui.wxss'; */
+
+page {
+  height: 100%;
+  background-color: #f7f7f7;
+  /* 新增 */
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+#member .weui-cell__hd image {
+  height: 140rpx;
+  width: 140rpx;
+  margin-right: 20rpx;
+  border-radius: 100%;
+}
+
+#member .weui-cell__ft {
+  font-size: 26rpx;
+}
+
+#member .weui-cell {
+  background-color: #fff;
+}
+
+.icon-edit {
+  height: 34rpx;
+  width: 34rpx;
+}
+
+#memberList {
+  margin-top: 20rpx;
+}
+
+#memberList .weui-cell__hd {
+  width: 45rpx;
+  height: 43rpx;
+}
+
+#memberList .weui-cell__bd {
+  color: #333;
+  font-size: 34rpx;
+  padding-left: 30rpx;
+}
+
+#memberList image {
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* #memberList .weui-cell:last-child{
+  margin-top: 20rpx;
+} */
+
+/* #memberList .weui-cell:last-child::before{
+  display: none;
+} */
+
+.weui-cell {
+  background-color: #fff;
+}
+
+
+
+/* .textOverflow{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250rpx;
+  display: inline-block;
+} */

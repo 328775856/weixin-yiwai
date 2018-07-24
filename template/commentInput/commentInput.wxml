@@ -1,0 +1,25 @@
+<template name="commentInput">
+  <view class="commentInputMask" bindtap="taphideMask" style="display:{{isMask?'block':'none'}};"></view>
+  <view class="commentInputWrp" style="display:{{isShowTrue?'block':'none'}};">
+    <view class="mui-flex alc">
+      <view class="cell">
+        <input placeholder="{{placeholder}}" maxlength="-1" value="{{value}}" placeholder-style="color:#999999;" focus="{{focus}}" bindfocus="cibindfocus" bindinput="cibindinput"></input>
+      </view>
+      <view class="btnComment" bindtap="tapAddComment">发送</view>
+    </view>
+  </view>
+</template>
+
+<template name="commentInput2">
+  <view class="commentInputWrp" style="display:{{!isShowTrue?'block':'none'}};">
+    <view class="mui-flex alc">
+      <view class="cell">
+        <input placeholder="{{'说点什么...'}}" placeholder-style="color:#999999;" disabled="true" bindtap="tapci2"></input>
+      </view>
+      <view class="favoWrp" bindtap="tapSetCollect">
+        <image src="{{isCollect?'../../images/Picture/EY_icon_collect_pressed@2x.png':'../../images/Picture/EY_icon_collect@2x.png'}}"></image>
+        <view>{{isCollect?'已收藏':'收藏'}}</view>
+      </view>
+    </view>
+  </view>
+</template>

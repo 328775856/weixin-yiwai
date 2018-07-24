@@ -1,0 +1,47 @@
+/* pages/Admirer/Admirer.wxss */
+
+@import '../../template/empty/empty.wxss';
+#admirer .weui-media-box_text.weui-media-box{
+  padding: 15px 15px 25px;
+}
+.weui-panel::before{
+  display: none;
+}
+
+.admirer-box_media .weui-media-box_appmsg{
+  align-items: stretch;
+}
+
+.admirer-box_media .weui-box-media_title{
+  
+}
+
+#admirer .weui-media-box__hd_in-appmsg{
+  width: 240rpx;
+  height: 110rpx;
+}
+
+.admirer-box{
+  margin-top: 20rpx;
+  border-radius:5rpx;
+  box-shadow:3rpx 5rpx 20rpx rgba(27,28,31,0.1);
+}
+
+.admirer-box_wrap{
+  padding: 30rpx;
+}
+
+.admirer-box_word{
+  font-size: 15px;
+}
+
+.admirer-box_media{
+  margin-top: 24rpx;
+  background-color: RGBA(217, 217, 217, .3);
+}
+
+.bold{
+  color: #333;
+  font-size: 15px;
+  padding: 0 12rpx;
+}

@@ -1,0 +1,32 @@
+<!--pages/Exhibition/Exhibition.wxml-->
+<view id='exhibition'>
+    <view wx:if="{{isEmpty}}">
+         <view class='empty'>
+    <view class='empty-wrap'>
+        <image class='empty-image' src='../../images/EY_icon_nofound@2x.png'></image>
+
+        <view class='empty-title'>空空如也</view>
+    </view>
+  </view>
+    </view>
+    <view wx:else>
+        <navigator  url="{{item.url}}" wx:for="{{dataList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg {{item.className}}" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image mode='aspectFill' class="weui-media-box__thumb round" src="{{item.image}}" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.exhibitionName}}</view>
+        <view class="weui-media-box__desc"><text>{{item.exhibitionStartTime}}</text>~<text>{{item.exhibitionStartTime}}</text></view>
+         <view class='weui-media-box_bottom'>{{item.readNum}}人参观</view> 
+        </view>
+    </navigator>
+    </view>
+    <view class="weui-btn-area">
+      <button class="ey-btn btn-primary"  bindtap="goApplyexhibition">申请办展</button>
+        </view>
+
+        <view class="loading {{isLoading?'show':''}}">
+  <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif"></image>
+</view>
+ <view wx:if="{{!isLoadMore}}" class='noData'>暂无更多数据</view>
+</view>

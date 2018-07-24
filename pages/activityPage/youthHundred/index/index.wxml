@@ -1,0 +1,169 @@
+<view id="indexWrp" wx:if="{{customerId!=0}}">
+
+  <!-- 头部图片 begin -->
+  <image class="headImageWrp" src="{{'https://img.kanhua.yiwaiart.com/miniApp/activity/EY_img_bantou@1x.png'}}" mode="aspectFill"></image>
+  <!-- 头部图片 end -->
+
+  <!-- 活动详情点击button begin -->
+  <view class="btnActivityDetails" bindtap="navigateToExplain">
+    <image src="../../images/youthHundred/Group31@1x.png"></image>
+  </view>
+  <!-- 活动详情点击button end -->
+
+
+  <!-- 活动logo begin -->
+  <view class="actLogoWrp">
+    <image src="../../images/youthHundred/EY_img_pick@1.5x.png"></image>
+  </view>
+  <!-- 活动logo end -->
+
+  <!-- top3 begin -->
+  <view class="top3Wrp mui-flex">
+    <view class="cell" wx:for="{{top3List}}" wx:key="">
+      <view class="imgOutterWrp1" bindtap="navigateToProductDetail" data-id="{{item.productDto.id}}">
+        <view class="imgOutterWrp2">
+          <image src="{{item.productDto.imageUrl}}?imageView2/2/h/350/q/50" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="textWrp txt-ovh">{{item?item.productDto.name:'虚位以待'}}</view>
+    </view>
+  </view>
+  <!-- 底部柱子 begin -->
+  <view class="bearWrp">
+    <image src="../../images/youthHundred/EY_img_taizi@1x.png" mode="widthFix"></image>
+  </view>
+  <!-- 底部柱子 end -->
+
+
+  <!-- top3 end -->
+
+
+  <!-- 参赛作品 begin -->
+  <view class="productWrp mlr30">
+    <view class="titleOutterWrp">
+      <view class="titleWrp">
+        <image src="../../images/youthHundred/EY_img_bankuai@1x.png"></image>
+        <view class="t1">参赛作品</view>
+      </view>
+      <button class="btnShare" open-type="share">拉票</button>
+      <!-- <view class="btnShare">拉票</view> -->
+    </view>
+    <view class="listWrp">
+      <template is="productItem" data="{{productList}}" />
+    </view>
+    <view class="btnFindWrp tc">
+      <text class="btnFind" bindtap="navigateToProduct">继续寻找 >>></text>
+    </view>
+  </view>
+  <view class="splitLine"></view>
+  <!-- 参赛作品 end -->
+
+  <!-- 规则 begin -->
+  <view class="tc ruleImgOutterWrp">
+    <image src="../../images/youthHundred/Group15@1x.png" class="ruleImgWrp"></image>
+    <view class="tc textWrp">
+      <view class="t1">活动规则</view>
+      <view class="t2">1、每个微信号在活动期间（07.25-07.29 ），每天 可送出3个“桃子”；</view>
+      <view class="t3">2、每个微信号对同一作品每天仅限送出1个“桃子”。</view>
+    </view>
+  </view>
+  <!-- 规则 end -->
+
+
+  <!-- 线下展览 begin -->
+  <view class="offlineWrp">
+    <view class="titleOutterWrp mlr30">
+      <view class="titleWrp">
+        <image src="../../images/youthHundred/EY_img_bankuai@1x.png"></image>
+        <view class="t1">线下展览</view>
+      </view>
+    </view>
+    <view class="imgWrp plr30">
+      <image src="{{'https://img.kanhua.yiwaiart.com/miniApp/activity/EY_img_canzhan@1x.png'}}" class="ruleImgWrp" mode="widthFix" bindtap="navigateToExhibitionDetails"></image>
+    </view>
+  </view>
+  <!-- 线下展览 end -->
+
+  <!-- 最新评论 begin -->
+  <view class="commentWrp mlr30">
+    <view class="titleOutterWrp">
+      <view class="titleWrp">
+        <image src="../../images/youthHundred/EY_img_bankuai@1x.png"></image>
+        <view class="t1">最新评论</view>
+      </view>
+      <view class="commentNumWrp">共 {{totalItems}} 条评论</view>
+    </view>
+    <view class="tips mui-flex">
+      <image src="../../images/youthHundred/EY_icon_pinglun@1x.png"></image>
+      <view class="cell textWrp">优质评论可获得与艺术家面对面交流机会哟</view>
+    </view>
+    <view class="listWrp">
+      <template is="commentItem" data="{{commentList}}" />
+    </view>
+    <view class="btnFindWrp tc" wx:if="{{!isLoaded}}">
+      <text class="btnFind">上拉加载更多</text>
+    </view>
+    <view class="noDataWrp" wx:if="{{isEmpty}}">暂无评论</view>
+  </view>
+  <!-- 最新评论 end -->
+
+
+</view>
+
+
+<!-- 作品列表模板1 begin-->
+<template name="productItem">
+  <view class="clearfix">
+    <view wx:for="{{productList}}" wx:key="" class="productItemWrp fl">
+      <view class="imgWrp imgOutterWrp1" bindtap="navigateToProductDetail" data-id="{{item.productDto.id}}">
+        <view class="imgOutterWrp2">
+          <!-- <image src="{{item.productDto.imageUrl}}?imageView2/2/h/430/q/50" mode="aspectFill"></image> -->
+          <image src="{{item.productDto.imageUrl}}?imageView2/2/h/430/q/50" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="plr20">
+        <view class="textWrp txt-ovh">
+          <text class="t1">Top{{index+1}}</text>
+          <text class="t2">{{item.productDto.name}}</text>
+        </view>
+        <view class="opeWrp mui-flex alc">
+          <!-- // 有k值判断 -->
+          <view class="cell bk t3">已收获 {{item.peachNum}} 颗</view>
+          <image src="{{item.isLike==1?'../../images/youthHundred/EY_icon_tao_pressed@1x.png':'../../images/youthHundred/EY_icon_tao_normal@1x.png'}}" bindtap="setVotePeach" data-product-id="{{item.productDto.id}}" data-is-like="{{item.isLike}}"></image>
+
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 作品列表模板1 end-->
+
+
+<!-- 评论列表模板 begin-->
+<template name="commentItem">
+  <view wx:for="{{commentList}}" wx:key="" class="commentItemWrp mui-flex alc" bindtap="navigateToProductDetail" data-id="{{item.productId}}">
+    <image class="imgProduct" src="{{item.productImg}}?imageView2/1/w/178/h/227/q/50" mode="aspectFill"></image>
+    <view class="cell">
+      <view class="mui-flex alc topWrp">
+        <image class="imgHead" src="{{item.customerImg}}"></image>
+        <view class="cell">
+          <view class="t1 txt-ovh">{{item.customerName}}</view>
+          <view class="t2">{{item.gmtCreate}}</view>
+        </view>
+        <!-- <image class="iconLike" src="../../images/youthHundred/EY_icon_like_normal@1x.png"></image> -->
+        <image class="iconLike" src="{{item.isLike==1?'../../images/youthHundred/EY_icon_like-presses@1x.png':'../../images/youthHundred/EY_icon_like_normal@1x.png'}}" catchtap="setCommentLike" data-comment-id="{{item.id}}"></image>
+        <view class="t3" catchtap="setCommentLike" data-comment-id="{{item.id}}">{{item.commentLikeNum}}</view>
+      </view>
+      <view class="contentWrp bk">
+        {{item.content}}
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 评论列表模板 end-->
+
+
+<!-- 授权:ui模板 begin-->
+<import src="../../../../template/auth/auth" />
+<template is="auth" data="{{showAuthAlert}}"></template>
+<!-- 授权:ui模板 end-->

@@ -1,0 +1,11 @@
+/* pages/ExhibitionWorks/ExhibitionWorks.wxss */
+
+@import '../../template/empty/empty.wxss';
+.container{
+  column-count: 2;  /*设置列数*/ 
+  column-gap:4rpx;
+  padding: 30rpx;
+}
+image{
+  width: 167px;
+}

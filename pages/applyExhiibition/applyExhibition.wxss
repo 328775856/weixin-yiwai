@@ -1,0 +1,38 @@
+/* pages/applyExhiibition/applyExhibition.wxss */
+page{
+  background-color: #f7f7f7;
+}
+.box-wrap{
+  padding: 10px 15px 15px;
+}
+
+.box-inner{
+  box-shadow:2px 5px 20px rgba(0,0,0,0.15);
+  border-radius:8rpx;
+}
+
+.box-content{
+  padding: 42px 20px 30px;
+}
+.box-title{
+  height: 124rpx;
+  line-height: 124rpx;
+  text-align: center;
+  background-color: #000;
+  color: #000;
+}
+
+.box-content_info{
+  font-size: 13px;
+  color: #999;
+  line-height: 2;
+}
+.box-content_inner{
+  margin-bottom: 40rpx;
+}
+
+.text-underline{
+  text-decoration: underline;
+  font-size: 13px;
+}
+

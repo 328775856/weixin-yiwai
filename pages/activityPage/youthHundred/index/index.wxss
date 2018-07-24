@@ -1,0 +1,437 @@
+page {
+  height: 100%;
+}
+
+#indexWrp {
+  min-height: 100%;
+  /* background: linear-gradient(to bottom, #ffd9e3, #fff5f8); *//* background: linear-gradient(to bottom, #ffd9e3, red); *//* background: #fff5f8; *//* background: #FEC3D5; */
+  background: #ffdee7;
+}
+
+.headImageWrp {
+  width: 100%;
+  height: 583rpx;
+}
+
+.btnActivityDetails {
+  width: 341rpx;
+  height: 73rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
+
+.btnActivityDetails image {
+  width: 100%;
+  height: 100%;
+}
+
+.actLogoWrp {
+  width: 560rpx;
+  height: 251rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}
+
+.actLogoWrp image {
+  width: 100%;
+  height: 100%;
+}
+
+/* top3模块 */
+
+.top3Wrp {
+  position: relative;
+  z-index: 1;
+  margin: 60rpx 30rpx 0 30rpx;
+  align-items: flex-end;
+  font-size: 28rpx;
+  color: #37403d;
+  line-height: 28rpx;
+}
+
+.imgOutterWrp1 {
+  background-color: #fff;
+  box-sizing: content-box;
+  padding: 5rpx;
+  box-shadow: 17rpx 18rpx 20rpx -10rpx rgba(197, 135, 120, 100);
+}
+
+.imgOutterWrp2 {
+  border: 2rpx solid #ffdde6;
+  padding: 5rpx;
+  box-sizing: content-box;
+}
+
+.top3Wrp .cell {
+  margin-right: 20rpx;
+}
+
+.top3Wrp .cell:last-child {
+  margin-right: 0;
+}
+
+.top3Wrp image {
+  width: 100%;
+  background-color: #fff5f8;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.top3Wrp .cell:nth-child(1) {
+  flex: 250;
+}
+
+.top3Wrp .cell:nth-child(1) image {
+  height: 250rpx;
+}
+
+.top3Wrp .cell:nth-child(2) {
+  flex: 350;
+}
+
+.top3Wrp .cell:nth-child(2) image {
+  height: 350rpx;
+}
+
+.top3Wrp .cell:nth-child(3) {
+  flex: 215;
+}
+
+.top3Wrp .cell:nth-child(3) image {
+  height: 215rpx;
+}
+
+.top3Wrp .textWrp {
+  text-align: center;
+  margin-top: 15rpx;
+}
+
+.bearWrp {
+  position: absolute;
+  width: 100%;
+  margin-top: -140rpx;
+}
+
+.bearWrp image {
+  width: 100%;
+}
+
+.productWrp {
+  position: relative;
+  z-index: 1;
+  margin-top: 100rpx;
+}
+
+.productWrp .listWrp {
+  margin-top: 40rpx;
+}
+
+.btnFindWrp {
+  padding-top: 40rpx;
+  padding-bottom: 60rpx;
+}
+
+.btnFind {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #ff93b0;
+}
+
+.splitLine {
+  margin: 0 30rpx;
+  height: 0;
+  border-top: 1rpx solid #fcc9d7;
+}
+
+.ruleImgOutterWrp {
+  width: 622rpx;
+  height: 247rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  position: relative;
+  padding: ;
+}
+
+.ruleImgOutterWrp .ruleImgWrp {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.ruleImgOutterWrp .textWrp {
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.ruleImgOutterWrp .t1 {
+  color: #ff93b0;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.ruleImgOutterWrp .t2, .ruleImgOutterWrp .t3 {
+  font-size: 24rpx;
+  color: #ff93b0;
+  padding: 0 10rpx 0 30rpx;
+  line-height: 40rpx;
+}
+
+.ruleImgOutterWrp .t2 {
+  margin-top: 30rpx;
+}
+
+.offlineWrp {
+  margin-top: 60rpx;
+}
+
+.offlineWrp .imgWrp {
+  padding: 0 30rpx;
+  margin-top: 40rpx;
+}
+
+.offlineWrp .imgWrp image {
+  width: 100%;
+  height: 100%;
+}
+
+.commentWrp {
+  margin-top: 60rpx;
+}
+
+.commentWrp .commentNumWrp {
+  font-size: 24rpx;
+  color: #37403d;
+}
+
+.commentWrp .tips {
+  margin-top: 30rpx;
+}
+
+.commentWrp .tips image {
+  width: 60rpx;
+  height: 50rpx;
+  margin-right: 15rpx;
+}
+
+.commentWrp .tips .textWrp {
+  padding: 0 15rpx !important;
+  height: 58rpx;
+  line-height: 58rpx;
+  font-size: 22rpx;
+  color: #c65977;
+  /* background: #fedbe6; */
+  background: #ffc9d8;
+}
+
+.commentWrp .listWrp {
+  margin-top: 50rpx;
+}
+
+/* 标题 begin */
+
+.titleOutterWrp {
+  position: relative;
+  height: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleOutterWrp .btnShare {
+  margin: 0;
+  padding: 0;
+  color: #37403d;
+  font-size: 26rpx;
+  width: 100rpx;
+  height: 40rpx;
+  background: linear-gradient(127.7deg, rgba(255, 182, 206, 1), rgba(255, 147, 177, 1));
+  border-radius: 24rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.titleOutterWrp image {
+  width: 232rpx;
+  height: 23rpx;
+  vertical-align: middle;
+  position: absolute;
+  bottom: 0;
+}
+
+.titleOutterWrp .t1 {
+  font-size: 32rpx;
+  line-height: 1;
+  color: #37403d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 标题 end */
+
+/* productItem begin */
+
+.productItemWrp {
+  width: 50%;
+  box-sizing: border-box;
+  margin-top: 60rpx;
+}
+
+.productItemWrp .imgWrp {
+  box-shadow: none;
+}
+
+.productItemWrp:nth-child(1), .productItemWrp:nth-child(2) {
+  margin-top: 0;
+}
+
+.productItemWrp:nth-child(odd) {
+  padding-right: 15rpx;
+}
+
+.productItemWrp:nth-child(even) {
+  padding-left: 15rpx;
+}
+
+.productItemWrp .plr20 {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.productItemWrp .imgWrp image {
+  width: 100%;
+  /* height: 100%; */
+  height: 430rpx;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.productItemWrp .textWrp {
+  margin-top: 20rpx;
+}
+
+.productItemWrp .t3 {
+  font-size: 22rpx;
+  color: #c87561;
+}
+
+.productItemWrp .textWrp .t1 {
+  font-size: 24rpx;
+  color: #2f2f2f;
+  margin-right: 20rpx;
+}
+
+.productItemWrp .textWrp .t2 {
+  font-size: 28rpx;
+  color: #37403d;
+}
+
+.productItemWrp .opeWrp {
+  margin-top: 10rpx;
+}
+
+.productItemWrp .opeWrp image {
+  width: 120rpx;
+  height: 46rpx;
+}
+
+/* productItem end */
+
+/* commentItem begin */
+
+.commentItemWrp:first-child {
+  margin-top: 0;
+}
+
+.commentItemWrp {
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  /* border-bottom: 1rpx solid #fedcd4; */
+  border-bottom: 1rpx solid #ffc9d8;
+}
+
+.commentItemWrp .imgProduct {
+  width: 178rpx;
+  height: 227rpx;
+  margin-right: 30rpx;
+  background-image: url(https://img.kanhua.yiwaiart.com/picture/default_bg_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.commentItemWrp .imgHead {
+  border-radius: 100%;
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.commentItemWrp .iconLike {
+  padding: 15rpx;
+  width: 29rpx;
+  height: 32rpx;
+  /* margin-left: 15rpx; */
+}
+
+.commentItemWrp .topWrp .imgHead {
+  margin-right: 30rpx;
+}
+
+.commentItemWrp .topWrp .t1 {
+  line-height: 1;
+  color: #c65977;
+  font-size: 24rpx;
+}
+
+.commentItemWrp .topWrp .t2 {
+  margin-top: 15rpx;
+  line-height: 1;
+  color: #c85d7a;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.commentItemWrp .topWrp .t3 {
+  color: #37403d;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 15rpx 0 15rpx 0;
+  /* margin-left: 15rpx; */
+}
+
+.commentItemWrp .contentWrp {
+  margin-top: 20rpx;
+  color: #c65977;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  min-height: 120rpx;
+  text-align: justify;
+}
+
+/* commentItem end */
+
+.noDataWrp {
+  font-size: 24rpx;
+  text-align: center;
+  padding-bottom: 50rpx;
+}
+
+.mlr30 {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+image {
+  vertical-align: middle;
+}

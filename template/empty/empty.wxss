@@ -1,0 +1,29 @@
+.empty{
+  background: RGBA(247, 247, 247, 1);
+  height: 100%;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.empty-wrap{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-130%);
+}
+
+.empty-image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.empty-title{
+  color: RGBA(153, 153, 153, 1);
+  font-size: 15px;
+  white-space: nowrap;
+}

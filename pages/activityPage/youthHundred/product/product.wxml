@@ -1,0 +1,44 @@
+<view id="productWrp">
+  <image class="iconRightWrp" src="../../images/youthHundred/EY_icon_right_top.png"></image>
+  <view class="searchOutterWrp">
+    <view class="searchWrp mlr30 mui-flex alc">
+      <image class="searchIcon" src="../../images/youthHundred/EY_icon_search@1x.png"></image>
+      <view class="cell">
+        <input type="text" placeholder="搜索你要找的编号/作品/艺术家" placeholder-style="color:#C65977;font-size:24rpx;" bindinput="bindinput" bindconfirm="bindconfirm"></input>
+      </view>
+    </view>
+  </view>
+  <scroll-view class="svWrp" scroll-with-animation="{{true}}" scroll-y="{{true}}" bindscrolltolower="bindscrolltolower">
+    <view class="productListWrp mlr30">
+      <template is="productItem" data="{{productList}}" />
+    </view>
+    <view wx:if="{{isEmpty}}" class="noDataWrp">暂无数据</view>
+
+  </scroll-view>
+</view>
+
+
+
+<!-- 作品列表模板 begin-->
+<template name="productItem">
+  <view wx:for="{{productList}}" wx:key="" class="productItemWrp">
+    <view class="imgWrp" bindtap="navigateToProductDetail" data-id="{{item.productDto.id}}">
+      <!-- <image class="imgProduct" src="{{item.productDto.imageUrl}}?imageView2/2/h/380/q/50" mode="aspectFill"></image> -->
+      <image class="imgProduct" src="{{item.productDto.imageUrl}}?imageView2/2/h/380/q/50" mode="aspectFill"></image>
+      <view class="numWrp">{{item.organNumber}}</view>
+      <view class="typeWrp">{{item.productDto.productTypeDto.name}}</view>
+    </view>
+    <view class="mui-flex alc btmWrp ">
+      <view class="cell">
+        <view class="t1">{{item.productDto.name}}</view>
+        <view class="t2">{{item.productDto.artistName}}</view>
+      </view>
+      <view class="mui-flex alc">
+        <image class="iconPeach" src="../../images/youthHundred/EY_icon_normal@1x.png"></image>
+        <text class="allWrp">已收获 {{item.peachNum}} 颗</text>
+      </view>
+      <image class="iconLike" src="{{item.isLike==1?'../../images/youthHundred/EY_icon_tao_pressed@1x.png':'../../images/youthHundred/EY_icon_tao_normal@1x.png'}}" bindtap="setVotePeach" data-product-id="{{item.productDto.id}}" data-is-like="{{item.isLike}}"></image>
+    </view>
+  </view>
+</template>
+<!-- 作品列表模板 end-->

@@ -1,4 +1,4 @@
-<view id="detailWrp">
+<view id="detailWrp" wx:if="{{customerId!=0&&productDetails!=null}}">
 
   <!-- 头部图片 begin-->
   <view class="headerImgWrp" bindtap="previewImage" data-url="{{ productDetails.imageUrl }}">
@@ -7,13 +7,24 @@
     <scroll-view bindscroll="bindscroll" scroll-x style="width: 100%;height:{{maxHeight}}px;">
       <image src="{{ productDetails.imageUrl }}" class="containPicWrp" mode="aspectFill" bindload="bindload" style="width:{{imgWidth}}px;height:{{imgHeight}}px;margin-top:{{mt}}px;"></image>
     </scroll-view>
+
+    <view class="btnCreatePoster" catchtap="navigateToPoster">
+      <image src="../../images/Picture/EY_icon_share@2x.png"></image>
+      生成海报</view>
   </view>
   <!-- 头部图片 end-->
 
   <!-- 头部详情 begin -->
   <view class="propWrp plr30">
-    <view class="nameWrp">{{productDetails.name}}</view>
 
+    <!-- 送桃活动 begin -->
+    <view class="peachWrp" wx:if="{{isShowPeach&&productDetails&&productDetails.peachNum}}">
+      <image src="{{isPeachLike==1?'../activityPage/images/youthHundred/EY_icon_tao_pressed@1x.png':'../activityPage/images/youthHundred/EY_icon_tao_normal@1x.png'}}" bindtap="setVotePeach" data-is-like="{{isPeachLike}}"></image>
+      <view class="numWrp">已收获{{productDetails.peachNum||0}}颗</view>
+    </view>
+    <!-- 送桃活动 end -->
+
+    <view class="nameWrp bk">{{productDetails.name}}</view>
     <view class="mui-flex" wx:if="{{productDetails.productTypeDto.parent.name&&productDetails.productTypeDto.name}}">
       <view class="lblWrp">类别：</view>
       <view class="cell">{{productDetails.productTypeDto.parent.name}} - {{productDetails.productTypeDto.name}}</view>
@@ -21,7 +32,7 @@
 
     <view class="mui-flex" wx:if="{{productDetails.proSize}}">
       <view class="lblWrp">尺寸：</view>
-      <view class="cell">{{productDetails.proSize}}</view>
+      <view class="cell bk" style="padding-right:150rpx!important;">{{productDetails.proSize}}</view>
     </view>
     <view class="mui-flex" wx:if="{{productDetails.proYears}}">
       <view class="lblWrp">创作年份：</view>
@@ -39,7 +50,7 @@
   <view class="descWrp plr30">
     <view class="artistNameWrp">
       <text>{{productDetails.artistName}}</text>
-      <text class="t1">作者</text>
+      <text class="t1">创作者</text>
     </view>
 
     <view id="textWrp" class="textWrp" style="height:{{limitHeight==0?'auto':limitHeight+'px;'}}">
@@ -54,30 +65,31 @@
   <!-- 音频/视频 begin -->
   <!-- 要判断只有一个或者多个的情况布局 -->
   <!-- <swiper class="mediaWrp" previous-margin="{{bannerList.length <=2 ? 0 : '30rpx'}}" next-margin="{{bannerList.length <=2 ? 0 : '30rpx'}}"  indicator-dots="{{false}}"> -->
-  <swiper class="mediaWrp" previous-margin="{{'0rpx'}}" next-margin="{{'30rpx'}}" indicator-dots="{{false}}" circular="{{false}}">
+  <swiper wx:if="{{mediaList.length>0}}" class="mediaWrp" previous-margin="{{'0rpx'}}" next-margin="{{'30rpx'}}" indicator-dots="{{false}}" circular="{{false}}">
     <block wx:for="{{mediaList}}" wx:key="">
       <swiper-item>
         <view class="itemWrp">
-          <view class="itemInrWrp" style="background-image: url({{item.imageUrl}});" bindtap="tapPlay" data-type="{{item.type}}">
-            <image src="../../images/Picture/EY_btn_viedio_play@2x.png"></image>
-            <view class="wordsWrp txt-ovh">{{item.type==1?'视频':'音频'}}：我是{{item.type==1?'视频':'音频'}}</view>
+          <view class="itemInrWrp" style="background-image: url({{item.mediaImage}}?imageView2/2/h/310/q/50);" bindtap="tapPlay" data-item="{{item}}">
+            <image src=" ../../images/Picture/EY_btn_viedio_play@2x.png "></image>
+            <view class="wordsWrp txt-ovh ">{{item.mediaTitle}}</view>
           </view>
         </view>
       </swiper-item>
     </block>
   </swiper>
-
   <!-- 视频播放组件 begin-->
-  <video id="player" poster="{{productDetails.videoImage}}" src="{{productDetails.videoUrl}}" bindfullscreenchange="bindfullscreenchange" style="display:{{isShowPlayer?'block':'none'}};width:100%;"></video>
+  <video id="player" poster="{{productDetails.videoImage}}" src="{{productDetails.videoUrl}}" bindfullscreenchange="bindfullscreenchange" style="display:{{isShowPlayer? 'block': 'none'}};width:100%;"></video>
+
   <!-- 视频播放组件 end-->
 
   <!-- 音频/视频 end -->
-  <view class="lineWrp"></view>
-  <!-- 评论 begin -->
+  <view class="lineWrp " wx:if="{{mediaList.length>0}}"></view>
+  <!-- 评论
+   begin -->
   <view class="simpleCommentWrp plr30">
     <view class="mui-flex headWrp">
-      <view class="cell t1">评论（190）</view>
-      <view class="t2">发表评论</view>
+      <view class="cell t1">观点（{{commentTotals}}）</view>
+      <view class="t2" bindtap="tapci2">发表观点</view>
     </view>
 
     <view class="quesWrp" wx:if="{{productDetails.proQuestion&&productDetails.proQuestion!=''}}">{{productDetails.proQuestion}}</view>
@@ -88,13 +100,13 @@
   </view>
   <!-- 评论 end -->
 
-  <view class="ey-btn btnMore" bindtap="tapMoreComment" wx:if="{{commentList.length>0}}">更多评论</view>
+  <view class="ey-btn btnMore" bindtap="tapMoreComment" wx:if="{{commentList.length>0}}">更多观点</view>
 
   <view class="lineWrp"></view>
 
   <!-- 感兴趣 begin -->
-  <view class="interestWrp">
-    <view class="t1 plr30">你可能感兴趣</view>
+  <view class="interestWrp" wx:if="{{productList.length>0}}">
+    <view class="t1 plr30">猜你喜欢</view>
 
     <template is="productListScroll" data="{{productList}}"></template>
 
@@ -104,6 +116,15 @@
 
 </view>
 
+<!-- 授权:ui模板 begin-->
+<import src="../../template/auth/auth" />
+<template is="auth" data="{{showAuthAlert}}"></template>
+<!-- 授权:ui模板 end-->
+
 <import src="../../lib/wxParse/wxParse/wxParse.wxml" />
 <import src="../../template/commentItem/commentItem.wxml" />
 <import src="../../template/productListScroll/productListScroll.wxml" />
+<import src="../../template/commentInput/commentInput.wxml" />
+
+<template is="commentInput" data="{{...commentInputObj}}"></template>
+<template is="commentInput2" data="{{isShowTrue:commentInputObj.isShowTrue,isCollect}}" wx:if="{{productDetails!=null}}"></template>

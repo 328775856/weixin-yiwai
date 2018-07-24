@@ -1,15 +1,14 @@
-<view id="exhibitionDetails">
+<view id="exhibitionDetails" wx:if="{{customerId!=0}}">
   <!-- 头部图片 begin -->
   <view class="headerImgWrp">
-    <!-- <view class="loadingWrapper" wx:if="{{isImgLoading}}">
-       <image class="imgLoading" src="../../images/audio-loading.png"></image> 
-    </view> -->
-    <view class="bgWrp blur" style="background-image: url({{details.imageUrl}}); width:{{windowWidth+40}}px;"></view>
+    <image wx:if="{{isImgLoading}}" class="imgLoading" src="https://img.kanhua.yiwaiart.com/ironman/loading.gif?imageView2/2/w/130/h/130/q/50"></image>
+    <view wx:if="{{!isImgLoading}}" class="bgWrp blur" style="background-image: url('{{details.image}}?imageView2/1/w/750/h/470/q/50'); width:{{windowWidth+40}}px;"></view>
     <view class="descWrp mui-flex">
-      <image src="{{ details.imageUrl }}" class="imgPosterWrp" mode="aspectFill" bindload="bindload"></image>
+      <image src="{{ details.image }}" class="imgPosterWrp" mode="aspectFill" bindload="bindload" bindtap="previewImage" data-url="{{details.image}}"></image>
       <view class="lWrp cell">
-        <view class="bk">央·美术馆联袂 teamLab 打造【teamLab★未来游乐园】</view>
-        <view class="dateWrp">2018.06.29-2018.09.20</view>
+        <view class="bk">{{details.exhibitionName}}</view>
+        <view class="dateWrp">{{details.exhibitionStartTime}}-{{details.exhibitionEndTime}}</view>
+        <view class="posiWrp">{{details.place}}</view>
       </view>
     </view>
   </view>
@@ -19,17 +18,19 @@
   <!-- 展览信息 begin -->
   <view class="showInfoWrp plr30">
     <view class="titleWrp">展览信息</view>
-    <view class="contentWrp">
+
+    <view id="textWrp" class="textWrp" style="height:{{limitHeight==0?'auto':limitHeight+'px;'}}">
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
+    <view wx:if="{{isShowOpen}}" class="btnOpenAll" bindtap="tapOpenAll">{{isOpen?'收起':'展开'}}</view>
   </view>
   <!-- 展览信息 end -->
   <view class="lineWrp"></view>
   <!-- 参展艺术家 begin -->
-  <view class="artistWrp">
+  <view class="artistWrp" wx:if="{{artistList.length>0}}">
     <view class="titleWrp plr30">参展艺术家</view>
 
-    <template is="artistListScroll" data="{{artistList}}"></template>
+    <template is="artistListScroll" data="{{artistList,isMore:isMoreArtist}}"></template>
 
     <!-- <scroll-view scroll-x="true" scroll-with-animation="true" style="margin-top:40rpx;">
       <view class="listWrp">
@@ -56,52 +57,68 @@
     </scroll-view> -->
   </view>
   <!-- 参展艺术家 end -->
-  <view class="lineWrp"></view>
+  <view class="lineWrp" wx:if="{{artistList.length>0}}"></view>
   <!-- 作品列表 begin -->
-  <view class="productWrp">
+  <view class="productWrp" wx:if="{{productList.length>0}}">
     <view class="titleWrp plr30">作品</view>
 
-    <template is="productListScroll" data="{{productList,isMore:true}}"></template>
+    <template is="productListScroll" data="{{productList,isMore}}"></template>
   </view>
   <!-- 作品列表 end -->
-  <view class="lineWrp"></view>
+  <view class="lineWrp" wx:if="{{productList.length>0}}"></view>
 
   <!-- 评论 begin -->
   <view class="commentWrp">
     <view class="plr30 titleWrp mui-flex alc">
-      <view>评论</view>
+      <view>观点</view>
       <view class="clearfix cell">
-        <view class="fr btnComment">发表评论</view>
+        <view class="fr btnComment" bindtap="tapShowCommentInput">发表观点</view>
       </view>
     </view>
 
     <view>
-      <template is="commentItem2" wx:for="{{commentList}}" wx:key="" data="{{...item,index}}"></template>
+      <template is="commentItem" wx:for="{{commentList}}" wx:key="" data="{{...item,isNoReplyWrp:true}}"></template>
+      <view class="loadingGif {{isLoading?'show':''}};">
+        <image src="https://img.kanhua.yiwaiart.com/ironman/loading.gif?imageView2/2/w/130/h/130/q/50"></image>
+      </view>
       <!-- <template is="commentItem3"  wx:for="{{commentList}}" wx:key="" data="{{...item,index}}"></template>  -->
+    </view>
+    <view class="emptyWrp" wx:if="{{isEmpty&&commentList.length==0}}">
+      <image src="../../images/EY_icon_nofound@2x.png"></image>
+      <view class="textWrp">说两句吧，偷偷的看多没意思！</view>
     </view>
 
   </view>
   <!-- 评论 end   -->
 
-  <view class="ey-btn btnMoreComment">更多评论</view>
+  <view class="ey-btn btnMoreComment" bindtap="tapLoadMore" wx:if="{{!isLoaded}}">更多观点</view>
 
 
 
-  <view class="createTicketWrp">
+  <view class="createTicketWrp" wx:if="{{!commentInputObj.isShowTrue&&discount!=0}}">
     <view class="mui-flex h100">
       <view class="descWrp cell">
         <view class="absmiddle">
-          <view class="t1">8.8折</view>
+          <view class="t1">{{discount}} 折</view>
           <view class="t2 txt-ovh">分享后即可获得EY独家打折券</view>
         </view>
       </view>
-      <view class="btnCreate">生成参展券</view>
+      <view class="btnCreate" bindtap="navigateToExhibitionTicket">免费领券</view>
     </view>
   </view>
 
 </view>
 
+
+<!-- 授权:ui模板 begin-->
+<import src="../../template/auth/auth" />
+<template is="auth" data="{{showAuthAlert}}"></template>
+<!-- 授权:ui模板 end-->
+
 <import src="../../lib/wxParse/wxParse/wxParse.wxml" />
 <import src="../../template/commentItem/commentItem.wxml" />
 <import src="../../template/artistListScroll/artistListScroll.wxml" />
 <import src="../../template/productListScroll/productListScroll.wxml" />
+
+<import src="../../template/commentInput/commentInput.wxml" />
+<template is="commentInput" data="{{...commentInputObj}}"></template>

@@ -1,0 +1,34 @@
+<view id="explainWrp">
+  <image class="iconRightWrp" src="../../images/youthHundred/EY_icon_right_top.png"></image>
+  <view class="topWrp mui-flex alc">
+    <image src="../../images/youthHundred/EY_img_logo@1x.png" class="logo1"></image>
+    <text class="andWrp">×</text>
+    <image src="../../images/youthHundred/EY_img_logo2@1x.png" class="logo2"></image>
+  </view>
+  <view class="explainWrp">活动说明</view>
+  <view class="mui-flex alc sectionWrp">
+    <image src="../../images/youthHundred/no1.png" class="noImg"></image>
+    <view class="cell">投票时间</view>
+  </view>
+  <view class="timeWrp">
+    2018年7月25日 0:00-2018年7月29日 18:00
+  </view>
+
+  <view class="mui-flex alc sectionWrp">
+    <image src="../../images/youthHundred/no2.png" class="noImg"></image>
+    <view class="cell">活动奖励</view>
+  </view>
+  <view class="awardWrp">
+    <view class="wordsWrp">
+      一、选出你最喜爱的艺术作品为它“送桃”，获得最多“桃子”的作品艺术家将获得“桃葡湾奖”最具影响力艺术家称号，前三名艺术家将获得“桃葡湾奖”人气艺术家称号。
+    </view>
+    <view class="wordsWrp">
+      二、投票后，你将获得8折观展券，也将有机会免费参观展览，同时我们将选出100个优质评论用户与“桃葡湾奖”最具影响力艺术家面对面交流。
+    </view>
+    <view class="wordsWrp">
+      三、活动选出的前三名的艺术家可入选“青年艺术100”全球艺术漂流计划；“桃葡湾奖”最具影响力艺术家同时可直接获得2019年度“青年艺术100”决赛轮资格；意外艺术为“桃葡湾奖”最具影响力艺术家、人气艺术家筹备专场见面会；“桃葡湾奖”最具影响力艺术家、人气艺术家将获得一筐当天采摘的鲜桃。
+    </view>
+  </view>
+
+
+</view>
